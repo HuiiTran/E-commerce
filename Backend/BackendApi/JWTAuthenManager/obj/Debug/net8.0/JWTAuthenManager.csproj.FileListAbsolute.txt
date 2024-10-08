@@ -1,0 +1,13 @@
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.deps.json
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.pdb
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.csproj.AssemblyReference.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.AssemblyInfoInputs.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.AssemblyInfo.cs
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.csproj.CoreCompileInputs.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.sourcelink.json
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\refint\JWTAuthenManager.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.pdb
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\ref\JWTAuthenManager.dll
