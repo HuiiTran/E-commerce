@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ServicesCommon</id>
+    <version>1.0.0</version>
+    <authors>ServicesCommon</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="e76fc798bf403bb5a34dcdbd0be21f57004a6f02" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="MassTransit" version="8.2.2" exclude="Build,Analyzers" />
+        <dependency id="MassTransit.RabbitMQ" version="8.2.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="MongoDB.Driver" version="2.25.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\bin\Debug\net8.0\ServicesCommon.dll" target="lib\net8.0\ServicesCommon.dll" />
+  </files>
+</package>

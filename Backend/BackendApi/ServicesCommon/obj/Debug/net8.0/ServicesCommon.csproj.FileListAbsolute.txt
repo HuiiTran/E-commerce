@@ -1,0 +1,13 @@
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\bin\Debug\net8.0\ServicesCommon.deps.json
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\bin\Debug\net8.0\ServicesCommon.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\bin\Debug\net8.0\ServicesCommon.pdb
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.AssemblyInfoInputs.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.AssemblyInfo.cs
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.csproj.CoreCompileInputs.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\refint\ServicesCommon.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.pdb
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ref\ServicesCommon.dll
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.csproj.AssemblyReference.cache
+D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.sourcelink.json

@@ -9,9 +9,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthJWT", "AuthJWT", "{FBBF36F8-16FE-4CDC-ADE9-B8602D9C7937}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesCommon", "ServicesCommon\ServicesCommon.csproj", "{EA0D6835-CFB6-4031-95F4-EC6A0A37498D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA0D6835-CFB6-4031-95F4-EC6A0A37498D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0D6835-CFB6-4031-95F4-EC6A0A37498D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0D6835-CFB6-4031-95F4-EC6A0A37498D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0D6835-CFB6-4031-95F4-EC6A0A37498D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA0D6835-CFB6-4031-95F4-EC6A0A37498D} = {BD017E03-4675-4107-9148-0EC48778EA1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CAE5F8A-F3BD-46CB-8F64-559DE5F05266}
