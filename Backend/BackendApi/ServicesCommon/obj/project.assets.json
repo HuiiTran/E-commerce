@@ -1704,6 +1704,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "D:\\Bài làm các môn\\Mẫu thiết kế\\BackEnd\\Packages": {},
+        "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\NuPackages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

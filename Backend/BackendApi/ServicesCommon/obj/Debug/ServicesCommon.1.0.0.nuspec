@@ -5,7 +5,7 @@
     <version>1.0.0</version>
     <authors>ServicesCommon</authors>
     <description>Package Description</description>
-    <repository type="git" commit="e76fc798bf403bb5a34dcdbd0be21f57004a6f02" />
+    <repository type="git" commit="e0e11ddbc3027669c90e7ef185e699bd55797080" />
     <dependencies>
       <group targetFramework="net8.0">
         <dependency id="MassTransit" version="8.2.2" exclude="Build,Analyzers" />
@@ -18,6 +18,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\bin\Debug\net8.0\ServicesCommon.dll" target="lib\net8.0\ServicesCommon.dll" />
+    <file src="D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\bin\Debug\net8.0\ServicesCommon.dll" target="lib\net8.0\ServicesCommon.dll" />
   </files>
 </package>

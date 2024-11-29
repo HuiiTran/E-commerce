@@ -11,3 +11,16 @@ D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ref\ServicesCommon.dll
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.csproj.AssemblyReference.cache
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\ServicesCommon\obj\Debug\net8.0\ServicesCommon.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\bin\Debug\net8.0\ServicesCommon.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\bin\Debug\net8.0\ServicesCommon.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\bin\Debug\net8.0\ServicesCommon.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.csproj.AssemblyReference.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\refint\ServicesCommon.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ServicesCommon.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ServicesCommon\obj\Debug\net8.0\ref\ServicesCommon.dll

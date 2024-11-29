@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JWTAuthenManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf8de4688bf008a48b8bfabfcf22a91d29ef0843")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0e11ddbc3027669c90e7ef185e699bd55797080")]
 [assembly: System.Reflection.AssemblyProductAttribute("JWTAuthenManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JWTAuthenManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
