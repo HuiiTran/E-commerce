@@ -1,8 +1,8 @@
 ﻿using ServicesCommon;
 
-namespace AdminsApi.Entities
+namespace StaffsApi.Entities
 {
-    public class Admin : IEntity
+    public class Staff : IEntity
     {
         public Guid Id { get; set; }
         public required string UserName { get; set; }
@@ -11,11 +11,14 @@ namespace AdminsApi.Entities
 
         public string? Name { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? Image {  get; set; }
+        public string? Image { get; set; }
 
 
         public bool isDeleted { get; set; }
         public DateTimeOffset? CreatedDate { get; set; }
         public DateTimeOffset LatestUpdatedDate { get; set; }
+
+
+        //public List<decimal>? Salary { get; set; }
     }
 }
