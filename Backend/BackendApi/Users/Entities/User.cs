@@ -14,6 +14,10 @@ namespace UsersApi.Entities
         public string? PhoneNumber { get; set; }
         public List<string>? Address { get; set; }
 
+
+        //public Guid CartId { get; set; }
+
+
         public List<Guid>? BoughtProducts {  get; set; }
 
 
