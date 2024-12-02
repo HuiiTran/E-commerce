@@ -9,5 +9,12 @@ namespace CartApi.Entities
         public Guid? UserId { get; set; }
 
         public List<ProductInCart>? ListProductInCart { get; set; }
+
+
+        //
+        public bool isDeleted { get; set; }
+
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
     }
 }

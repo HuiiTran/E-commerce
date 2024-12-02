@@ -10,7 +10,7 @@ namespace ProductApi.Entities
         public decimal ProductPrice { get; set; }
         public int ProductQuantity { get; set; }
         public int ProductSoldQuantity { get; set; }
-        public List<string>? Image { get; set; }
+        public List<string>? ProductImages { get; set; }
         public required string ProductBrand { get; set; }
         public required string ProductType { get; set; }
         // public List<string>? ProductReivews {  get; set; }
