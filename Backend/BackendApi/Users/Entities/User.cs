@@ -8,7 +8,8 @@ namespace UsersApi.Entities
         public string? UserName { get; set; }
         public string? PassWord { get; set; }
         public string? Email { get; set; }
-        public bool IsEmailConfirmed { get; set; }
+        public bool IsEmailConfirmed { get; set; } = false;
+        public string? ConfirmedCode { get; set; }
 
         public string? FullName { get; set; }
         public string? PhoneNumber { get; set; }
@@ -21,7 +22,7 @@ namespace UsersApi.Entities
         public List<Guid>? BoughtProducts {  get; set; }
 
 
-        public bool isDeleted { get; set; }
+        public bool isDeleted { get; set; } = false;
         public DateTimeOffset? CreatedDate { get; set; }
         public DateTimeOffset? LatestUpdatedDate { get; set; }
 
