@@ -9,8 +9,10 @@ namespace ReviewsApi.Entities
         public Guid ProductId { get; set; }
 
         public string? ReviewText {  get; set; }
-        public List<string>? ReivewImages { get; set; }
+        public List<string>? ReviewImages { get; set; }
 
         public int Rated {  get; set; }
+
+        public bool isDeleted { get; set; } = false;
     }
 }

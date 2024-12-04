@@ -1,8 +1,6 @@
-﻿using RabbitMQ.Client;
-
-namespace AdminsApi.Dtos
+﻿namespace StaffsApi.Dtos
 {
-    public record AdminDto(
+    public record StaffDto(
         Guid Id,
         string UserName,
         string Password,
@@ -11,10 +9,10 @@ namespace AdminsApi.Dtos
         string? Phone,
         string? Image,
         bool isDeleted,
-        DateTimeOffset Createddate,
+        DateTimeOffset CreatedDate,
         DateTimeOffset LatestUpdatedDate
         );
-    public record CreateAdminDto(
+    public record CreateStaffDto(
         string UserName,
         string Password,
         string? Email,
@@ -22,7 +20,7 @@ namespace AdminsApi.Dtos
         string? Phone,
         string? Image
         );
-    public record UpdateAdminDto(
+    public record UpdateStaffDto(
         string UserName,
         string Password,
         string? Email,
