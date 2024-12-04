@@ -6,13 +6,13 @@ namespace UsersApi.Entities
     {
         public Guid Id { get; set; }
         public string? UserName { get; set; }
-        public string? PassWord { get; set; }
+        public string? Password { get; set; }
         public string? Email { get; set; }
         public bool IsEmailConfirmed { get; set; } = false;
         public string? ConfirmedCode { get; set; }
 
         public string? FullName { get; set; }
-        public string? PhoneNumber { get; set; }
+        public List<string>? PhoneNumber { get; set; }
         public List<string>? Address { get; set; }
 
 
@@ -23,8 +23,8 @@ namespace UsersApi.Entities
 
 
         public bool isDeleted { get; set; } = false;
-        public DateTimeOffset? CreatedDate { get; set; }
-        public DateTimeOffset? LatestUpdatedDate { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset LatestUpdatedDate { get; set; }
 
     }
 }
