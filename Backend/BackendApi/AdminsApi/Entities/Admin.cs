@@ -6,7 +6,7 @@ namespace AdminsApi.Entities
     {
         public Guid Id { get; set; }
         public required string UserName { get; set; }
-        public required string PassWord { get; set; }
+        public required string Password { get; set; }
         public string? Email { get; set; }
 
         public string? Name { get; set; }
@@ -14,8 +14,8 @@ namespace AdminsApi.Entities
         public string? Image {  get; set; }
 
 
-        public bool isDeleted { get; set; }
-        public DateTimeOffset? CreatedDate { get; set; }
+        public bool isDeleted { get; set; } = false;
+        public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset LatestUpdatedDate { get; set; }
     }
 }
