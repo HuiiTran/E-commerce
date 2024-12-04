@@ -12,7 +12,7 @@ namespace CartApi.Entities
 
 
         //
-        public bool isDeleted { get; set; }
+        public bool isDeleted { get; set; } = false;
 
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset UpdatedDate { get; set; }

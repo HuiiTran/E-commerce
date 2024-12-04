@@ -1,0 +1,6 @@
+@BillApi_HostAddress = http://localhost:5227
+
+GET {{BillApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
