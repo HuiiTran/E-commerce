@@ -25,6 +25,16 @@ builder.Services.AddMongo()
     .AddMongoRepository<Product>("Products")
     .AddMongoRepository<ProductType>("ProductType")
     .AddMongoRepository<ProductBrand>("ProductBrand")
+    .AddMongoRepository<ProductBrand>("ProductOperatingSystem")
+    .AddMongoRepository<ProductBrand>("ProductConnectivity")
+    .AddMongoRepository<ProductBrand>("ProductBatteryCapacity")
+    .AddMongoRepository<ProductBrand>("ProductNetworkType")
+    .AddMongoRepository<ProductBrand>("ProductRam")
+    .AddMongoRepository<ProductBrand>("ProductStorage")
+    .AddMongoRepository<ProductBrand>("ProductResolution")
+    .AddMongoRepository<ProductBrand>("ProductRefeshRate")
+    .AddMongoRepository<ProductBrand>("ProductSpecialFeature")
+
     .AddMassTransitWithRabbitMq();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

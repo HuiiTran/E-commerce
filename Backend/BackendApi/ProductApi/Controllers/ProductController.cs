@@ -6,7 +6,7 @@ using ServicesCommon;
 namespace ProductApi.Controllers
 {
     [ApiController]
-    [Route("products")]
+    [Route("Product")]
     public class ProductController : ControllerBase
     {
         private readonly IRepository<Product> _productsRepository;

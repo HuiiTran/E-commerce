@@ -32,5 +32,16 @@ namespace ProductApi
                 product.LatestUpdatedDate
                 );
         }
+
+        public static ProductBatteryCapacityDto ProductBatteryCapacityDto(this ProductBatteryCapacity productBatteryCapacity)
+        {
+            return new ProductBatteryCapacityDto(
+                productBatteryCapacity.Id,
+                productBatteryCapacity.ProductBatteryCapacityName,
+                productBatteryCapacity.isDeleted,
+                productBatteryCapacity.CreatedDate,
+                productBatteryCapacity.LatestUpdatedDate
+                );
+        }
     }
 }
