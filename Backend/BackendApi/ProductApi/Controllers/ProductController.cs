@@ -183,5 +183,111 @@ namespace ProductApi.Controllers
             if (product == null) return NotFound();
             return product.AsDto();
         }
+
+
+        /// <summary>
+        /// Create new Product
+        /// </summary>
+        /// <param name="createProductDto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult<ProductDto>> PostAsync([FromForm]CreateProductDto createProductDto)
+        {
+            var product = new Product
+            {
+                ProductName = createProductDto.ProductName,
+                ProductDescription = createProductDto.ProductDescription,
+                ProductPrice = createProductDto.ProductPrice,
+                ProductQuantity = createProductDto.ProductQuantity,
+                ProductBrand = createProductDto.ProductBrand,
+                ProductType = createProductDto.ProductType,
+                ProductOperatingSystem = createProductDto.ProductOperatingSystem,
+                ProductConnectivity = createProductDto.ProductConnectivity,
+                ProductBatteryCapacity = createProductDto.ProductBatteryCapacity,
+                ProductNetworkType = createProductDto.ProductNetworkType,
+                ProductRam = createProductDto.ProductRam,
+                ProductStorage = createProductDto.ProductStorage,
+                ProductResolution = createProductDto.ProductResolution,
+                ProductRefeshRate = createProductDto.ProductRefeshRate,
+                ProductSpecialFeature = createProductDto.ProductSpecialFeature,
+                CreatedDate = DateTime.UtcNow,
+                LatestUpdatedDate = DateTime.UtcNow,
+            };
+
+            List<string> tempImage = new List<string>();
+            foreach (var image in createProductDto.ProductImages)
+            {
+                if (image != null)
+                {
+                    MemoryStream memoryStream = new MemoryStream();
+                    image.OpenReadStream().CopyTo(memoryStream);
+                    tempImage.Add(Convert.ToBase64String(memoryStream.ToArray()));
+                }
+            }
+            product.ProductImages = tempImage;
+
+            await _productsRepository.CreateAsync(product);
+            return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(Guid id, [FromForm] UpdateProductDto updateProductDto)
+        {
+            var existingProduct = await _productsRepository.GetAsync(id);
+            List<string>? tempImages = new List<string>();
+            var existingImages = existingProduct.ProductImages;
+
+            if (existingProduct == null) return NotFound();
+            existingProduct.ProductName = updateProductDto.ProductName;
+            existingProduct.ProductDescription = updateProductDto.ProductDescription;
+            existingProduct.ProductPrice = updateProductDto.ProductPrice;
+            existingProduct.ProductQuantity = updateProductDto.ProductQuantity;
+            existingProduct.ProductBrand = updateProductDto.ProductBrand;
+            existingProduct.ProductType = updateProductDto.ProductType;
+            existingProduct.ProductOperatingSystem = updateProductDto.ProductOperatingSystem;
+            existingProduct.ProductConnectivity = updateProductDto.ProductConnectivity;
+            existingProduct.ProductBatteryCapacity = updateProductDto.ProductBatteryCapacity;
+            existingProduct.ProductNetworkType = updateProductDto.ProductNetworkType;
+            existingProduct.ProductRam = updateProductDto.ProductRam;
+            existingProduct.ProductStorage = updateProductDto.ProductStorage;
+            existingProduct.ProductResolution = updateProductDto.ProductResolution;
+            existingProduct.ProductRefeshRate = updateProductDto.ProductRefeshRate;
+            existingProduct.ProductSpecialFeature = updateProductDto.ProductSpecialFeature;
+            existingProduct.LatestUpdatedDate = DateTime.UtcNow;
+
+            if(updateProductDto.ProductImages == null)
+            {
+                existingProduct.ProductImages = existingImages;
+            }
+            else
+            {
+                foreach (var image in updateProductDto.ProductImages)
+                {
+                    if (image != null)
+                    {
+                        MemoryStream memoryStream = new MemoryStream();
+                        image.OpenReadStream().CopyTo(memoryStream);
+                        tempImages.Add(Convert.ToBase64String(memoryStream.ToArray()));
+                    }
+                    existingProduct.ProductImages = tempImages;
+                }
+            }
+            await _productsRepository.UpdateAsync(existingProduct);
+
+            return Ok();
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var product = await _productsRepository.GetAsync(id);
+            if (product != null)
+            {
+                product.isDeleted = true;
+                product.LatestUpdatedDate = DateTimeOffset.UtcNow;
+                await _productsRepository.UpdateAsync(product);
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

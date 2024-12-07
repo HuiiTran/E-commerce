@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using ProductApi.Entities;
+using System.Runtime.CompilerServices;
 
 namespace ProductApi.Dtos
 {
@@ -12,6 +13,15 @@ namespace ProductApi.Dtos
         List<string>? ProductImages,
         string ProductBrand,
         string ProductType,
+        string ProductOperatingSystem,
+        string ProductConnectivity,
+        string ProductBatteryCapacity,
+        string ProductNetworkType,
+        string ProductRam,
+        string ProductStorage,
+        string ProductResolution,
+        string ProductRefeshRate,
+        string ProductSpecialFeature,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset LatestUpdatedDate
@@ -22,18 +32,36 @@ namespace ProductApi.Dtos
         string ProductDescription,
         decimal ProductPrice,
         int ProductQuantity,
-        List<string> ProductImages,
+        List<IFormFile> ProductImages,
         string ProductBrand,
-        string ProductType
+        string ProductType,
+        string ProductOperatingSystem,
+        string ProductConnectivity,
+        string ProductBatteryCapacity,
+        string ProductNetworkType,
+        string ProductRam,
+        string ProductStorage,
+        string ProductResolution,
+        string ProductRefeshRate,
+        string ProductSpecialFeature
         );
     public record UpdateProductDto(
         string ProductName,
         string ProductDescription,
         decimal ProductPrice,
         int ProductQuantity,
-        List<string> ProductImages,
+        List<IFormFile> ProductImages,
         string ProductBrand,
         string ProductType,
+        string ProductOperatingSystem,
+        string ProductConnectivity,
+        string ProductBatteryCapacity,
+        string ProductNetworkType,
+        string ProductRam,
+        string ProductStorage,
+        string ProductResolution,
+        string ProductRefeshRate,
+        string ProductSpecialFeature,
         bool isDeleted
         );
 
