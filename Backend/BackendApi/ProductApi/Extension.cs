@@ -48,10 +48,21 @@ namespace ProductApi
         {
             return new ProductBrandDto(
                 productBrand.Id,
-                productBrand.BrandName,
+                productBrand.ProductBrandName,
                 productBrand.isDeleted,
                 productBrand.CreatedDate,
                 productBrand.LatestUpdatedDate
+                );
+        }
+
+        public static ProductConnectivityDto ProductConnectivityAsDto(this ProductConnectivity productConnectivity)
+        {
+            return new ProductConnectivityDto(
+                productConnectivity.Id,
+                productConnectivity.ProductConnectivityName,
+                productConnectivity.isDeleted,
+                productConnectivity.CreatedDate,
+                productConnectivity.LatestUpdatedDate
                 );
         }
     }

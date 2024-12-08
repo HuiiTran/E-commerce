@@ -9,7 +9,7 @@ namespace ProductApi.Entities
         public required string ProductConnectivityName { get; set; }
 
         public bool isDeleted { get; set; }
-        public DateTimeOffset? CreatedDate { get; set; }
-        public DateTimeOffset? LatestUpdatedDate { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset LatestUpdatedDate { get; set; }
     }
 }

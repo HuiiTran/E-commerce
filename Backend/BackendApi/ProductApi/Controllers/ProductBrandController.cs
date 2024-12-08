@@ -40,8 +40,8 @@ namespace ProductApi.Controllers
             {
                 ProductBrandName = createProductBrandDto.ProductBrandName,
                 isDeleted = false,
-                CreatedDate = DateTime.Now,
-                LatestUpdatedDate = DateTime.Now,
+                CreatedDate = DateTime.UtcNow,
+                LatestUpdatedDate = DateTime.UtcNow,
             };
             await _productBrandRepository.CreateAsync(productBrand);
             return Ok(productBrand);
@@ -54,7 +54,7 @@ namespace ProductApi.Controllers
             {
                 existingProductBrand.ProductBrandName = updateProductBrandDto.ProductBrandName;
                 existingProductBrand.isDeleted = updateProductBrandDto.isDeleted;
-                existingProductBrand.LatestUpdatedDate = DateTime.Now;
+                existingProductBrand.LatestUpdatedDate = DateTime.UtcNow;
                 await _productBrandRepository.UpdateAsync(existingProductBrand);
                 return Ok();
             }
@@ -67,7 +67,7 @@ namespace ProductApi.Controllers
             if (productBrand != null)
             {
                 productBrand.isDeleted = true;
-                productBrand.LatestUpdatedDate= DateTime.Now;
+                productBrand.LatestUpdatedDate= DateTime.UtcNow;
                 await _productBrandRepository.UpdateAsync(productBrand);
                 return Ok();
             }
