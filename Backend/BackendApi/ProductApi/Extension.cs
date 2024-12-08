@@ -98,5 +98,16 @@ namespace ProductApi
                 productRam.LatestUpdatedDate
                 );
         }
+
+        public static ProductRefeshRateDto ProductRefeshRateAsDto(this ProductRefeshRate productRefeshRate)
+        {
+            return new ProductRefeshRateDto(
+                productRefeshRate.Id,
+                productRefeshRate.ProductRefeshRateName,
+                productRefeshRate.isDeleted,
+                productRefeshRate.CreatedDate,
+                productRefeshRate.LatestUpdatedDate
+                );
+        }
     }
 }
