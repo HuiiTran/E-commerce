@@ -11,3 +11,16 @@ D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\refint\JWTAuthenManager.dll
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.pdb
 D:\Bài làm các môn\Mẫu thiết kế\BackEnd\JWTAuthenManager\obj\Debug\net8.0\ref\JWTAuthenManager.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\bin\Debug\net8.0\JWTAuthenManager.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.csproj.AssemblyReference.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\refint\JWTAuthenManager.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\JWTAuthenManager.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\JWTAuthenManager\obj\Debug\net8.0\ref\JWTAuthenManager.dll

@@ -6,12 +6,12 @@ namespace ProductApi.Entities
     {
         public Guid Id { get; set; }
 
-        public required string BrandName {  get; set; }
+        public required string ProductBrandName {  get; set; }
 
 
 
-        public bool isDeleted { get; set; }
-        public DateTimeOffset? CreatedDate { get; set; }
-        public DateTimeOffset? LatestUpdatedDate { get; set; }
+        public bool isDeleted { get; set; } = false;
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset LatestUpdatedDate { get; set; }
     }
 }

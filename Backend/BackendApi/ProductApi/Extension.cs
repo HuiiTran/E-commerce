@@ -33,7 +33,7 @@ namespace ProductApi
                 );
         }
 
-        public static ProductBatteryCapacityDto ProductBatteryCapacityDto(this ProductBatteryCapacity productBatteryCapacity)
+        public static ProductBatteryCapacityDto ProductBatteryCapacityAsDto(this ProductBatteryCapacity productBatteryCapacity)
         {
             return new ProductBatteryCapacityDto(
                 productBatteryCapacity.Id,
@@ -41,6 +41,17 @@ namespace ProductApi
                 productBatteryCapacity.isDeleted,
                 productBatteryCapacity.CreatedDate,
                 productBatteryCapacity.LatestUpdatedDate
+                );
+        }
+
+        public static ProductBrandDto ProductBrandAsDto(this ProductBrand productBrand)
+        {
+            return new ProductBrandDto(
+                productBrand.Id,
+                productBrand.BrandName,
+                productBrand.isDeleted,
+                productBrand.CreatedDate,
+                productBrand.LatestUpdatedDate
                 );
         }
     }

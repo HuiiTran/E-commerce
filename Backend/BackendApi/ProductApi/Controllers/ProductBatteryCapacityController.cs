@@ -20,7 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductBatteryCapacityDto>>> GetAsync()
         {
             var productBatteryCapacity = (await _productsBatteryCapacityRepository.GetAllAsync())
-                .Select(batteryCapacity => batteryCapacity.ProductBatteryCapacityDto());
+                .Select(batteryCapacity => batteryCapacity.ProductBatteryCapacityAsDto());
             return Ok(productBatteryCapacity);
         }
         [HttpGet("{id}")]
@@ -29,7 +29,7 @@ namespace ProductApi.Controllers
             var batteryCapacity = await _productsBatteryCapacityRepository.GetAsync(id);
             if (batteryCapacity != null)
             {
-                return batteryCapacity.ProductBatteryCapacityDto();
+                return batteryCapacity.ProductBatteryCapacityAsDto();
             }
             return NotFound();
         }
@@ -40,6 +40,7 @@ namespace ProductApi.Controllers
             var batteryCapacity = new ProductBatteryCapacity
             {
                 ProductBatteryCapacityName = createProductBatteryCapacityDto.ProductBatteryCapacityName,
+                isDeleted = false,
                 CreatedDate = DateTime.UtcNow,
                 LatestUpdatedDate = DateTime.UtcNow,
             };
