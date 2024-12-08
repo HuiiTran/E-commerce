@@ -65,5 +65,16 @@ namespace ProductApi
                 productConnectivity.LatestUpdatedDate
                 );
         }
+
+        public static ProductNetworkTypeDto ProductNetworkTypeAsDto(this ProductNetworkType productNetworkType)
+        {
+            return new ProductNetworkTypeDto(
+                productNetworkType.Id,
+                productNetworkType.ProductNetworkTypeName,
+                productNetworkType.isDeleted,
+                productNetworkType.CreatedDate,
+                productNetworkType.LatestUpdatedDate
+                );
+        }
     }
 }
