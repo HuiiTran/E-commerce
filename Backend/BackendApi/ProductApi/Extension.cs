@@ -87,5 +87,16 @@ namespace ProductApi
                 productOperatingSystem.LatestUpdatedDate
                 );
         }
+
+        public static ProductRamDto ProductRamAsDto(this ProductRam productRam)
+        {
+            return new ProductRamDto(
+                productRam.Id,
+                productRam.ProductRamName,
+                productRam.isDeleted,
+                productRam.CreatedDate,
+                productRam.LatestUpdatedDate
+                );
+        }
     }
 }
