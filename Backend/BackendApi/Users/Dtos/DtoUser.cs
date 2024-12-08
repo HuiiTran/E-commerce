@@ -22,7 +22,7 @@
         string? ConfirmedCode,
         string? FullName,
         List<string>? PhoneNumber,
-        List<string>? Address,
+        List<string>? Address
         );
     public record UpdateUserDto(
         string? UserName,

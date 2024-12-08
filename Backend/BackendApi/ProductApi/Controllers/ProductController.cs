@@ -10,7 +10,7 @@ namespace ProductApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IRepository<Product> _productsRepository;
-        private int pageSize = 10;
+        private const int pageSize = 10;
 
 
         public ProductController(IRepository<Product> productsRepository)
@@ -25,6 +25,19 @@ namespace ProductApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsync([FromQuery] int pageNumber = 1)
         {
+            if (pageNumber < 1) return BadRequest();
+            var products = (await _productsRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
+            return Ok(products);
+        }
+        [HttpGet("AdminSide")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsyncAdmin([FromQuery] int pageNumber = 1)
+        {
+            if (pageNumber < 1) return BadRequest();
             var products = (await _productsRepository.GetAllAsync())
                 .OrderBy(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
@@ -35,8 +48,28 @@ namespace ProductApi.Controllers
         [HttpGet("PagesAmount")]
         public async Task<ActionResult<int>> GetPagesAmount()
         {
-            var pagesAmount = (await _productsRepository.GetAllAsync())
+            int pagesAmount = 1;
+            var totalProducts = (await _productsRepository.GetAllAsync())
+                .Where (p => p.isDeleted == false)
                 .Count();
+            if (totalProducts > pageSize)
+            {
+                pagesAmount = (totalProducts % pageSize == 0) ? (totalProducts % pageSize) : (totalProducts % pageSize + 1);
+            }
+            if (pagesAmount == 0 || pagesAmount < 0) { pagesAmount = 1; }
+            return Ok(pagesAmount);
+        }
+        [HttpGet("PagesAmountAdmin")]
+        public async Task<ActionResult<int>> GetPagesAmountAdmin()
+        {
+            int pagesAmount = 1;
+            var totalProducts = (await _productsRepository.GetAllAsync())
+                .Count();
+            if (totalProducts > pageSize)
+            {
+                pagesAmount = (totalProducts % pageSize == 0) ? (totalProducts % pageSize) : (totalProducts % pageSize + 1);
+            }
+            if (pagesAmount == 0) { pagesAmount = 1; }
             return Ok(pagesAmount);
         }
         /// <summary>
@@ -49,7 +82,7 @@ namespace ProductApi.Controllers
         [HttpGet("Search/")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1 || pageSize < 1) return BadRequest();
+            if (pageNumber < 1 ) return BadRequest();
          
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString ))
@@ -65,40 +98,48 @@ namespace ProductApi.Controllers
         }
         
         [HttpGet("Filter/")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetWithFilter([FromQuery] string searchString, 
-                                                                               [FromQuery] string ProductBrand, 
-                                                                               [FromQuery] string ProductType,
-                                                                               [FromQuery] string ProductOperatingSystem,
-                                                                               [FromQuery] string ProductConnectivity,
-                                                                               [FromQuery] string ProductBatteryCapacity,
-                                                                               [FromQuery] string ProductNetworkType,
-                                                                               [FromQuery] string ProductRam,
-                                                                               [FromQuery] string ProductResolution,
-                                                                               [FromQuery] string ProductRefeshRate,
-                                                                               [FromQuery] string ProductSpecialFeature,
-                                                                               [FromQuery] int PriceMin,
-                                                                               [FromQuery] int PriceMax,
-                                                                               [FromQuery] string Order, 
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetWithFilter(
+                                                                               [FromQuery] string? ProductBrand, 
+                                                                               [FromQuery] string? ProductType,
+                                                                               [FromQuery] string? ProductOperatingSystem,
+                                                                               [FromQuery] string? ProductConnectivity,
+                                                                               [FromQuery] string? ProductBatteryCapacity,
+                                                                               [FromQuery] string? ProductNetworkType,
+                                                                               [FromQuery] string? ProductRam,
+                                                                               [FromQuery] string? ProductResolution,
+                                                                               [FromQuery] string? ProductRefeshRate,
+                                                                               [FromQuery] string? ProductSpecialFeature,
+                                                                               [FromQuery] int? PriceMin,
+                                                                               [FromQuery] int? PriceMax,
+                                                                               [FromQuery] string? Order, 
                                                                                [FromQuery] int pageNumber = 1
                                                                                )
         {
-            if (pageNumber < 1 || pageSize < 1) return BadRequest();
+            if (pageNumber < 1 ) return BadRequest();
+            if (PriceMax != null && PriceMin != null && PriceMax < PriceMin)
+            {
+                (PriceMin, PriceMax) = (PriceMax, PriceMin);
+            } 
             var products = (await _productsRepository.GetAllAsync())
-                .Where(p => p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString))
-                .Where(p => ProductBrand != null && p.ProductBrand == ProductBrand)
-                .Where(p => ProductType != null && p.ProductType == ProductType)
-                .Where(p => ProductOperatingSystem != null && p.ProductOperatingSystem == ProductOperatingSystem)
-                .Where(p => ProductConnectivity != null && p.ProductConnectivity == ProductConnectivity)
-                .Where(p => ProductBatteryCapacity != null && p.ProductBatteryCapacity == ProductBatteryCapacity)
-                .Where(p => ProductNetworkType != null && p.ProductNetworkType == ProductNetworkType)
-                .Where(p => ProductRam != null && p.ProductRam == ProductRam)
-                .Where(p => ProductResolution != null && p.ProductResolution == ProductResolution)
-                .Where(p => ProductRefeshRate != null && p.ProductRefeshRate == ProductRefeshRate)
-                .Where(p => ProductSpecialFeature != null && p.ProductSpecialFeature == ProductSpecialFeature)
-                .Where(p => p.ProductPrice >= PriceMin && p.ProductPrice <= PriceMax);
+                .Where(p =>
+                ((ProductBrand == null) ? true : p.ProductBrand == ProductBrand)
+                && ((ProductType == null) ? true : p.ProductType == ProductType)
+                && ((ProductOperatingSystem == null) ? true : p.ProductOperatingSystem == ProductOperatingSystem)
+                && ((ProductConnectivity == null) ? true : p.ProductConnectivity == ProductConnectivity)
+                && ((ProductBatteryCapacity == null) ? true : p.ProductBatteryCapacity == ProductBatteryCapacity)
+                && ((ProductNetworkType == null) ? true : p.ProductNetworkType == ProductNetworkType)
+                && ((ProductRam == null) ? true : p.ProductRam == ProductRam)
+                && ((ProductResolution == null) ? true : p.ProductResolution == ProductResolution)
+                && ((ProductRefeshRate == null) ? true : p.ProductRefeshRate == ProductRefeshRate)
+                && ((ProductSpecialFeature == null) ? true : p.ProductSpecialFeature == ProductSpecialFeature)
+                && ((PriceMin == null) ? true : p.ProductPrice >= PriceMin)
+                && ((PriceMax == null) ? true : p.ProductPrice <= PriceMax)
+                );
+                
+                
 
             if (products == null) return NotFound();
-
+            
             if (Order == "Ascending")
             {
                 var product = products.OrderBy(p => p.ProductPrice)
