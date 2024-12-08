@@ -76,5 +76,16 @@ namespace ProductApi
                 productNetworkType.LatestUpdatedDate
                 );
         }
+
+        public static ProductOperatingSystemDto ProductOperatingSystemAsDto(this ProductOperatingSystem productOperatingSystem)
+        {
+            return new ProductOperatingSystemDto(
+                productOperatingSystem.Id,
+                productOperatingSystem.ProductOperatingSystemName,
+                productOperatingSystem.isDeleted,
+                productOperatingSystem.CreatedDate,
+                productOperatingSystem.LatestUpdatedDate
+                );
+        }
     }
 }
