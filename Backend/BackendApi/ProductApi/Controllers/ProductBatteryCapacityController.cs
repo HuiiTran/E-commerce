@@ -23,5 +23,55 @@ namespace ProductApi.Controllers
                 .Select(batteryCapacity => batteryCapacity.ProductBatteryCapacityDto());
             return Ok(productBatteryCapacity);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductBatteryCapacityDto>> GetByIdAsync(Guid id)
+        {
+            var batteryCapacity = await _productsBatteryCapacityRepository.GetAsync(id);
+            if (batteryCapacity != null)
+            {
+                return batteryCapacity.ProductBatteryCapacityDto();
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ProductBatteryCapacityDto>> PostAsync(CreateProductBatteryCapacityDto createProductBatteryCapacityDto)
+        {
+            var batteryCapacity = new ProductBatteryCapacity
+            {
+                ProductBatteryCapacityName = createProductBatteryCapacityDto.ProductBatteryCapacityName,
+                CreatedDate = DateTime.UtcNow,
+                LatestUpdatedDate = DateTime.UtcNow,
+            };
+            await _productsBatteryCapacityRepository.CreateAsync(batteryCapacity);
+            return Ok(batteryCapacity);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(Guid id,UpdateProductBatteryCapacityDto updateProductBatteryCapacityDto)
+        {
+            var existingBatteryCapacity = await _productsBatteryCapacityRepository.GetAsync(id);
+            if (existingBatteryCapacity != null)
+            {
+                existingBatteryCapacity.ProductBatteryCapacityName = updateProductBatteryCapacityDto.ProductBatteryCapacityName;
+                existingBatteryCapacity.LatestUpdatedDate = DateTime.UtcNow;
+                existingBatteryCapacity.isDeleted = updateProductBatteryCapacityDto.isDeleted;
+                await _productsBatteryCapacityRepository.UpdateAsync(existingBatteryCapacity);
+                return Ok();
+            }
+            return NotFound();
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var batteryCapacity = await _productsBatteryCapacityRepository.GetAsync(id);
+            if( batteryCapacity != null)
+            {
+                batteryCapacity.isDeleted = true;
+                batteryCapacity.LatestUpdatedDate = DateTime.UtcNow;
+                await _productsBatteryCapacityRepository.UpdateAsync(batteryCapacity);
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

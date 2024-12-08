@@ -2,16 +2,16 @@
 {
     public record ProductBatteryCapacityDto(
         Guid Id,
-        string ProductBatteryCapacity,
+        string ProductBatteryCapacityName,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset LatestUpdatedDate
     );
     public record CreateProductBatteryCapacityDto(
-        string ProductBatteryCapacity
+        string ProductBatteryCapacityName
     );
     public record UpdateProductBatteryCapacityDto(
-        string ProductBatteryCapacity,
+        string ProductBatteryCapacityName,
         bool isDeleted
     );
 }
