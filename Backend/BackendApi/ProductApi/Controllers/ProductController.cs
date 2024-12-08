@@ -10,7 +10,9 @@ namespace ProductApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IRepository<Product> _productsRepository;
-        
+        private int pageSize = 10;
+
+
         public ProductController(IRepository<Product> productsRepository)
         {
             _productsRepository = productsRepository;
@@ -21,11 +23,21 @@ namespace ProductApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsync()
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsync([FromQuery] int pageNumber = 1)
         {
             var products = (await _productsRepository.GetAllAsync())
-                            .Select(product => product.AsDto());
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
             return Ok(products);
+        }
+        [HttpGet("PagesAmount")]
+        public async Task<ActionResult<int>> GetPagesAmount()
+        {
+            var pagesAmount = (await _productsRepository.GetAllAsync())
+                .Count();
+            return Ok(pagesAmount);
         }
         /// <summary>
         /// Search product with keyword include in name, description, brand of products
@@ -35,7 +47,7 @@ namespace ProductApi.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Search/")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
          
@@ -67,8 +79,8 @@ namespace ProductApi.Controllers
                                                                                [FromQuery] int PriceMin,
                                                                                [FromQuery] int PriceMax,
                                                                                [FromQuery] string Order, 
-                                                                               [FromQuery] int pageNumber = 1, 
-                                                                               [FromQuery] int pageSize = 10)
+                                                                               [FromQuery] int pageNumber = 1
+                                                                               )
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
             var products = (await _productsRepository.GetAllAsync())
@@ -112,7 +124,7 @@ namespace ProductApi.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("ByType/")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductType([FromQuery] string productType, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductType([FromQuery] string productType, [FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 
@@ -134,7 +146,7 @@ namespace ProductApi.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("ByAscendingPrice/")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByAscendingPrice([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByAscendingPrice([FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 
@@ -155,7 +167,7 @@ namespace ProductApi.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("ByDescendingPrice/")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByDescendingPrice([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByDescendingPrice([FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 

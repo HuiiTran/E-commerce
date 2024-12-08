@@ -11,7 +11,7 @@ namespace ProductApi.Entities
 
 
         public bool isDeleted { get; set; }
-        public DateTimeOffset? CreatedDate { get; set; }
-        public DateTimeOffset? LatestUpdatedDate { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset LatestUpdatedDate { get; set; }
     }
 }

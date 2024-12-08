@@ -9,7 +9,7 @@ namespace ProductApi.Controllers
     [Route("ProductRefeshRate")]
     public class ProductRefeshRateController : ControllerBase
     {
-        private IRepository<ProductRefeshRate> _productRefeshRateRepository;
+        private readonly IRepository<ProductRefeshRate> _productRefeshRateRepository;
 
         public ProductRefeshRateController(IRepository<ProductRefeshRate> productRefeshRateRepository)
         {

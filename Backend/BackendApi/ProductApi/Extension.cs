@@ -109,5 +109,16 @@ namespace ProductApi
                 productRefeshRate.LatestUpdatedDate
                 );
         }
+
+        public static ProductResolutionDto productResolutionAsDto(this ProductResolution productResolution)
+        {
+            return new ProductResolutionDto(
+                productResolution.Id,
+                productResolution.ProductResolutionName,
+                productResolution.isDeleted,
+                productResolution.CreatedDate,
+                productResolution.LatestUpdatedDate
+                );
+        }
     }
 }

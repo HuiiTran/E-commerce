@@ -10,7 +10,7 @@ namespace ProductApi.Controllers
     [Route("ProductRam")]
     public class ProductRamController : ControllerBase
     {
-        private IRepository<ProductRam> _productRamRepository;
+        private readonly IRepository<ProductRam> _productRamRepository;
 
         public ProductRamController(IRepository<ProductRam> productRamRepository)
         {
