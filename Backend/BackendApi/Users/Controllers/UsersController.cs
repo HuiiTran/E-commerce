@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using ServicesCommon;
 using UsersApi.Dtos;
 using UsersApi.Entities;
@@ -36,16 +37,63 @@ namespace UsersApi.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDto>> PostAsync(CreateUserDto createUserDto)
         {
+            Random random = new Random();
+            int randomNumber = random.Next(1000, 9999);
             var user = new User
             {
                 UserName = createUserDto.UserName,
                 Password = createUserDto.Password,
                 Email = createUserDto.Email,
                 IsEmailConfirmed = false,
+                ConfirmedCode = randomNumber,
                 FullName = createUserDto.FullName,
                 PhoneNumber = createUserDto.PhoneNumber,
-                Address = createUserDto.Address
+                Address = createUserDto.Address,
+                BoughtProducts = new List<Guid>(),
+                isDeleted = false,
+                CreatedDate = DateTime.UtcNow,
+                LatestUpdatedDate = DateTime.UtcNow,
             };
+            await _userRepository.CreateAsync(user);
+            return Ok(user);
+        }
+        [HttpPut("ConfirmUser")]
+        public async Task<IActionResult> ConfirmUser([FromQuery] Guid userId, [FromQuery] int ConfirmCode)
+        {
+            var user = await _userRepository.GetAsync(userId);
+            if (user == null) { return NotFound(); }
+            if (ConfirmCode == user.ConfirmedCode)
+            {
+                user.IsEmailConfirmed = true;
+                await _userRepository.UpdateAsync(user);
+            }
+            return Ok(user);
+        }
+        [HttpPut("UpdateEmail")]
+        public async Task<IActionResult> UpdateEmail([FromQuery]string newEmail, [FromQuery] Guid userId)
+        {
+            var user = await _userRepository.GetAsync(userId);
+            if (user == null) { return NotFound(); }
+            user.Email = newEmail;
+
+            await _userRepository.UpdateAsync(user);
+            return Ok(user);
+        }
+        [HttpPut("AddMoreBoughtProduct")]
+        public async Task<IActionResult> AddMoreBoughtProduct([FromQuery] Guid userId, [FromQuery] Guid productId)
+        {
+            var user = await _userRepository.GetAsync(userId);
+            if (user == null) { return NotFound(); }
+            foreach (var itemId in user.BoughtProducts)
+            {
+                if (itemId != productId)
+                {
+                    user.BoughtProducts.Add(productId);
+                }
+            }
+
+            await _userRepository.UpdateAsync(user);
+            return Ok(user);
         }
 
     }

@@ -161,7 +161,10 @@ namespace CartsApi.Controllers
         public async Task<IActionResult> PutAsync(Guid id, UpdateCartDto updateCartDto)
         {
             var existingCart = await _cartRepository.GetAsync(id);
-
+            if (updateCartDto.ListProductInCart == null)
+            {
+                return BadRequest();
+            }
             if (existingCart != null)
             {
                 existingCart.ListProductInCart = updateCartDto.ListProductInCart;

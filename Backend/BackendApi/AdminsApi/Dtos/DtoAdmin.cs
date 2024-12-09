@@ -8,8 +8,7 @@ namespace AdminsApi.Dtos
         string Password,
         string? Email,
         string? Name,
-        string? Phone,
-        string? Image,
+        string? PhoneNumber,
         bool isDeleted,
         DateTimeOffset Createddate,
         DateTimeOffset LatestUpdatedDate
@@ -19,16 +18,14 @@ namespace AdminsApi.Dtos
         string Password,
         string? Email,
         string? Name,
-        string? Phone,
-        string? Image
+        string? PhoneNumber
         );
     public record UpdateAdminDto(
         string UserName,
         string Password,
         string? Email,
         string? Name,
-        string? Phone,
-        string? Image,
+        string? PhoneNumber,
         bool isDeleted
         );
 }

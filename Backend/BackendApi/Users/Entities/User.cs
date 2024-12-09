@@ -9,7 +9,7 @@ namespace UsersApi.Entities
         public string? Password { get; set; }
         public string? Email { get; set; }
         public bool IsEmailConfirmed { get; set; } = false;
-        public string? ConfirmedCode { get; set; }
+        public int? ConfirmedCode { get; set; }
 
         public string? FullName { get; set; }
         public List<string>? PhoneNumber { get; set; }

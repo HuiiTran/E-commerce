@@ -14,7 +14,6 @@ namespace AdminsApi
                 admin.Email,
                 admin.Name,
                 admin.PhoneNumber,
-                admin.Image,
                 admin.isDeleted,
                 admin.CreatedDate,
                 admin.LatestUpdatedDate
