@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductOperatingSystemDto>>> GetAsync()
         {
             var productOperatingSystems = (await _productOperatingSystemRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productOperatingSystem => productOperatingSystem.ProductOperatingSystemAsDto());
             return Ok(productOperatingSystems);
         }
@@ -31,6 +32,7 @@ namespace ProductApi.Controllers
             {
                 return NotFound();
             }
+            if(productOperatingSystem.isDeleted == true) return BadRequest();
             return productOperatingSystem.ProductOperatingSystemAsDto();
         }
         [HttpPost]
@@ -70,6 +72,24 @@ namespace ProductApi.Controllers
             productOperatingSystem.isDeleted = true;
             productOperatingSystem.LatestUpdatedDate = DateTime.UtcNow;
             return Ok(productOperatingSystem);
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductOperatingSystemDto>>> GetAsyncAdmin()
+        {
+            var productOperatingSystems = (await _productOperatingSystemRepository.GetAllAsync())
+                .Select(productOperatingSystem => productOperatingSystem.ProductOperatingSystemAsDto());
+            return Ok(productOperatingSystems);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductOperatingSystemDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productOperatingSystem = await _productOperatingSystemRepository.GetAsync(id);
+            if (productOperatingSystem == null)
+            {
+                return NotFound();
+            }
+            return productOperatingSystem.ProductOperatingSystemAsDto();
         }
     }
 }

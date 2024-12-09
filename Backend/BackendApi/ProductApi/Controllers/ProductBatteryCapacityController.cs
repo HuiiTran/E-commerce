@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductBatteryCapacityDto>>> GetAsync()
         {
             var productBatteryCapacity = (await _productsBatteryCapacityRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(batteryCapacity => batteryCapacity.ProductBatteryCapacityAsDto());
             return Ok(productBatteryCapacity);
         }
@@ -73,6 +74,14 @@ namespace ProductApi.Controllers
                 return Ok();
             }
             return NotFound();
+        }
+
+        [HttpGet("GetAllAdmin")]
+        public async Task<ActionResult<IEnumerable<ProductBatteryCapacityDto>>> GetAsyncAdmin()
+        {
+            var productBatteryCapacity = (await _productsBatteryCapacityRepository.GetAllAsync())
+                .Select(batteryCapacity => batteryCapacity.ProductBatteryCapacityAsDto());
+            return Ok(productBatteryCapacity);
         }
     }
 }

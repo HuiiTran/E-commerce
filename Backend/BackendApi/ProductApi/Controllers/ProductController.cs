@@ -63,7 +63,7 @@ namespace ProductApi.Controllers
             if (pageNumber < 1 ) return BadRequest();
          
             var products = (await _productsRepository.GetAllAsync())
-                .Where(p => p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString ))
+                .Where(p => (p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString) && p.isDeleted == false ))
                 .OrderByDescending(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -112,6 +112,7 @@ namespace ProductApi.Controllers
                 && ((ProductSpecialFeature == null) ? true : p.ProductSpecialFeature == ProductSpecialFeature)
                 && ((PriceMin == null) ? true : p.ProductPrice >= PriceMin)
                 && ((PriceMax == null) ? true : p.ProductPrice <= PriceMax)
+                && (p.isDeleted == false)
                 );
                 
                 
@@ -148,7 +149,7 @@ namespace ProductApi.Controllers
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 
             var products = (await _productsRepository.GetAllAsync())
-                .Where(p => p.ProductType.Contains(productType))
+                .Where(p => p.ProductType.Contains(productType) && p.isDeleted == false)
                 .OrderByDescending(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -170,6 +171,7 @@ namespace ProductApi.Controllers
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 
             var products = (await _productsRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .OrderBy(p => p.ProductPrice)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -191,6 +193,7 @@ namespace ProductApi.Controllers
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
 
             var products = (await _productsRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .OrderByDescending(p => p.ProductPrice)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -212,6 +215,7 @@ namespace ProductApi.Controllers
             var product = await _productsRepository.GetAsync(id);
 
             if (product == null) return NotFound();
+            if (product.isDeleted == true) return NotFound();
             return product.AsDto();
         }
 
@@ -324,7 +328,7 @@ namespace ProductApi.Controllers
         }
 
 
-        [HttpGet("GetAllAdminSide")]
+        [HttpGet("GetAllAdmin")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsyncAdmin([FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1) return BadRequest();
@@ -347,6 +351,34 @@ namespace ProductApi.Controllers
             }
             if (pagesAmount == 0) { pagesAmount = 1; }
             return Ok(pagesAmount);
+        }
+
+        [HttpGet("SearchAdmin")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsyncAdmin([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
+        {
+            if (pageNumber < 1) return BadRequest();
+
+            var products = (await _productsRepository.GetAllAsync())
+                .Where(p => (p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString) ))
+                .OrderByDescending(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
+
+            if (products != null) return Ok(products);
+
+            return NotFound();
+
+        }
+        [HttpGet("ProductAdmin{id}")]
+        //[Authorize]
+        public async Task<ActionResult<ProductDto>> GetByIdAsyncAdmin([FromRoute] Guid id)
+        {
+            var product = await _productsRepository.GetAsync(id);
+
+            if (product == null) return NotFound();
+            
+            return product.AsDto();
         }
     }
 }

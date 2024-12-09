@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductBrandDto>>> GetAsync()
         {
             var productBrands = (await _productBrandRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productBrand => productBrand.ProductBrandAsDto());
             return Ok(productBrands);
         }
@@ -29,6 +30,7 @@ namespace ProductApi.Controllers
             var productBrand = await _productBrandRepository.GetAsync(id);
             if (productBrand != null)
             {
+                if (productBrand.isDeleted == true) return BadRequest();
                 return productBrand.ProductBrandAsDto();
             }
             return NotFound();
@@ -70,6 +72,25 @@ namespace ProductApi.Controllers
                 productBrand.LatestUpdatedDate= DateTime.UtcNow;
                 await _productBrandRepository.UpdateAsync(productBrand);
                 return Ok();
+            }
+            return NotFound();
+        }
+
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductBrandDto>>> GetAsyncAdmin()
+        {
+            var productBrands = (await _productBrandRepository.GetAllAsync())
+                .Select(productBrand => productBrand.ProductBrandAsDto());
+            return Ok(productBrands);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductBrandDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productBrand = await _productBrandRepository.GetAsync(id);
+            if (productBrand != null)
+            {
+                return productBrand.ProductBrandAsDto();
             }
             return NotFound();
         }

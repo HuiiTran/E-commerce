@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductNetworkTypeDto>>> GetAsync()
         {
             var productNetworkTypes = (await _productNetworkTypeRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productNetworkType => productNetworkType.ProductNetworkTypeAsDto());
             return Ok(productNetworkTypes);
         }
@@ -29,6 +30,7 @@ namespace ProductApi.Controllers
             var productNetworkType = await _productNetworkTypeRepository.GetAsync(id);
             if(productNetworkType != null)
             {
+                if (productNetworkType.isDeleted == true) return BadRequest();
                 return productNetworkType.ProductNetworkTypeAsDto();
             }
             return NotFound();
@@ -70,6 +72,24 @@ namespace ProductApi.Controllers
                 productNetworkType.LatestUpdatedDate= DateTime.UtcNow;
                 await _productNetworkTypeRepository.UpdateAsync(productNetworkType);
                 return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductNetworkTypeDto>>> GetAsyncAdmin()
+        {
+            var productNetworkTypes = (await _productNetworkTypeRepository.GetAllAsync())
+                .Select(productNetworkType => productNetworkType.ProductNetworkTypeAsDto());
+            return Ok(productNetworkTypes);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductNetworkTypeDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productNetworkType = await _productNetworkTypeRepository.GetAsync(id);
+            if (productNetworkType != null)
+            {
+                return productNetworkType.ProductNetworkTypeAsDto();
             }
             return NotFound();
         }

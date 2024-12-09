@@ -21,6 +21,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductRamDto>>> GetAsync()
         {
             var productRams = (await _productRamRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productRam => productRam.ProductRamAsDto());
             return Ok(productRams);
         }
@@ -33,6 +34,7 @@ namespace ProductApi.Controllers
             {
                 return NotFound();
             }
+            if (productRam.isDeleted == true) return BadRequest();
             return productRam.ProductRamAsDto();
         }
 
@@ -75,6 +77,25 @@ namespace ProductApi.Controllers
             productRam.isDeleted = true;
             productRam.LatestUpdatedDate = DateTime.UtcNow;
             return Ok();
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductRamDto>>> GetAsyncAdmin()
+        {
+            var productRams = (await _productRamRepository.GetAllAsync())
+                .Select(productRam => productRam.ProductRamAsDto());
+            return Ok(productRams);
+        }
+
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductRamDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productRam = await _productRamRepository.GetAsync(id);
+            if (productRam == null)
+            {
+                return NotFound();
+            }
+            return productRam.ProductRamAsDto();
         }
     }
 }

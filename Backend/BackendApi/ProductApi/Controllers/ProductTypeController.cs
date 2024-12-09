@@ -19,6 +19,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductTypeDto>>> GetAsync()
         {
             var productTypes = (await _productTypeRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productType => productType.ProductTypeAsDto());
             return Ok(productTypes);
         }
@@ -31,6 +32,7 @@ namespace ProductApi.Controllers
             {
                 return NotFound();
             }
+            if (productType.isDeleted == true) return BadRequest();
             return productType.ProductTypeAsDto();
         }
         [HttpPost]
@@ -74,6 +76,26 @@ namespace ProductApi.Controllers
 
             await _productTypeRepository.UpdateAsync(productType);
             return Ok(productType);
+        }
+
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductTypeDto>>> GetAsyncAdmin()
+        {
+            var productTypes = (await _productTypeRepository.GetAllAsync())
+                .Select(productType => productType.ProductTypeAsDto());
+            return Ok(productTypes);
+        }
+
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductTypeDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productType = await _productTypeRepository.GetAsync(id);
+            if (productType == null)
+            {
+                return NotFound();
+            }
+            return productType.ProductTypeAsDto();
         }
     }
 }

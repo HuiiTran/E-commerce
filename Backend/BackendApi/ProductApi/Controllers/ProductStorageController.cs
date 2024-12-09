@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductStorageDto>>> GetAsync()
         {
             var productStorages = (await _productStorageRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productStorage => productStorage.ProductStorageAsDto());
             return Ok(productStorages);
         }
@@ -28,7 +29,7 @@ namespace ProductApi.Controllers
         {
             var productStorage = await _productStorageRepository.GetAsync(id);
             if (productStorage == null) return NotFound();
-
+            if (productStorage.isDeleted == true) return BadRequest();
             return productStorage.ProductStorageAsDto();
         }
 
@@ -70,6 +71,21 @@ namespace ProductApi.Controllers
 
             await _productStorageRepository.UpdateAsync(productStorage);
             return Ok(productStorage);
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductStorageDto>>> GetAsyncAdmin()
+        {
+            var productStorages = (await _productStorageRepository.GetAllAsync())
+                .Select(productStorage => productStorage.ProductStorageAsDto());
+            return Ok(productStorages);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductStorageDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productStorage = await _productStorageRepository.GetAsync(id);
+            if (productStorage == null) return NotFound();
+            return productStorage.ProductStorageAsDto();
         }
     }
 }

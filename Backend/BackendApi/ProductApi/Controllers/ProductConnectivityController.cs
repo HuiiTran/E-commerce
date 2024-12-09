@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductConnectivityDto>>> GetAsync()
         {
             var productConnectivities = (await _productConnectivityRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productConnectivity => productConnectivity.ProductConnectivityAsDto());
             return Ok(productConnectivities);
         }
@@ -29,6 +30,7 @@ namespace ProductApi.Controllers
             var productConnectivity = await _productConnectivityRepository.GetAsync(id);
             if(productConnectivity != null)
             {
+                if (productConnectivity.isDeleted == true) return BadRequest();
                 return productConnectivity.ProductConnectivityAsDto();
             }
             return NotFound();
@@ -70,6 +72,24 @@ namespace ProductApi.Controllers
                 productConnectivity.LatestUpdatedDate = DateTime.UtcNow;
                 await _productConnectivityRepository.UpdateAsync(productConnectivity);
                 return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductConnectivityDto>>> GetAsyncAdmin()
+        {
+            var productConnectivities = (await _productConnectivityRepository.GetAllAsync())
+                .Select(productConnectivity => productConnectivity.ProductConnectivityAsDto());
+            return Ok(productConnectivities);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductConnectivityDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productConnectivity = await _productConnectivityRepository.GetAsync(id);
+            if (productConnectivity != null)
+            {
+                return productConnectivity.ProductConnectivityAsDto();
             }
             return NotFound();
         }

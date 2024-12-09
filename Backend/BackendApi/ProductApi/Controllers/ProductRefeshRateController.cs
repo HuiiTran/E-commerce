@@ -20,6 +20,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductRefeshRateDto>>> GetAsync()
         {
             var productRefeshRates = (await _productRefeshRateRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productRefeshRate => productRefeshRate.ProductRefeshRateAsDto());
             return Ok(productRefeshRates);
         }
@@ -32,6 +33,7 @@ namespace ProductApi.Controllers
             {
                 return NotFound();
             }
+            if(productRefeshRate.isDeleted == true) return BadRequest();
             return productRefeshRate.ProductRefeshRateAsDto();
         }
         [HttpPost]
@@ -71,6 +73,25 @@ namespace ProductApi.Controllers
             productRefeshRate.isDeleted = true;
             productRefeshRate.LatestUpdatedDate = DateTime.UtcNow;
             return Ok(productRefeshRate);
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductRefeshRateDto>>> GetAsyncAdmin()
+        {
+            var productRefeshRates = (await _productRefeshRateRepository.GetAllAsync())
+                .Select(productRefeshRate => productRefeshRate.ProductRefeshRateAsDto());
+            return Ok(productRefeshRates);
+        }
+
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductRefeshRateDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productRefeshRate = await _productRefeshRateRepository.GetAsync(id);
+            if (productRefeshRate == null)
+            {
+                return NotFound();
+            }
+            return productRefeshRate.ProductRefeshRateAsDto();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace ProductApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductResolutionDto>>> GetAsync()
         {
             var productResolutions = (await _productResolutionRepository.GetAllAsync())
+                .Where(p => p.isDeleted == false)
                 .Select(productResolution => productResolution.productResolutionAsDto());
             return Ok(productResolutions);
         }
@@ -33,6 +34,7 @@ namespace ProductApi.Controllers
             {
                 return NotFound();
             }
+            if (productResolution.isDeleted == true) return BadRequest();
             return productResolution.productResolutionAsDto();
         }
 
@@ -77,6 +79,24 @@ namespace ProductApi.Controllers
             productResolution.LatestUpdatedDate = DateTime.UtcNow;
             await _productResolutionRepository.UpdateAsync(productResolution);
             return Ok(productResolution);
+        }
+
+        [HttpGet("Admin")]
+        public async Task<ActionResult<IEnumerable<ProductResolutionDto>>> GetAsyncAdmin()
+        {
+            var productResolutions = (await _productResolutionRepository.GetAllAsync())
+                .Select(productResolution => productResolution.productResolutionAsDto());
+            return Ok(productResolutions);
+        }
+        [HttpGet("Admin/{id}")]
+        public async Task<ActionResult<ProductResolutionDto>> GetByIdAsyncAdmin(Guid id)
+        {
+            var productResolution = await _productResolutionRepository.GetAsync(id);
+            if (productResolution == null)
+            {
+                return NotFound();
+            }
+            return productResolution.productResolutionAsDto();
         }
     }
 }
