@@ -24,7 +24,7 @@ builder.Services.AddCors(options =>
 //Add repository
 builder.Services.AddMongo()
     .AddMongoRepository<Cart>("Carts")
-    .AddMongoRepository<CartProduct>("CartProduct")
+    .AddMongoRepository<Product>("CartProduct")
     .AddMassTransitWithRabbitMq();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

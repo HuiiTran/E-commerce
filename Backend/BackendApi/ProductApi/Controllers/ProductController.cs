@@ -34,17 +34,7 @@ namespace ProductApi.Controllers
                 .Select(product => product.AsDto());
             return Ok(products);
         }
-        [HttpGet("AdminSide")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsyncAdmin([FromQuery] int pageNumber = 1)
-        {
-            if (pageNumber < 1) return BadRequest();
-            var products = (await _productsRepository.GetAllAsync())
-                .OrderBy(p => p.Id)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .Select(product => product.AsDto());
-            return Ok(products);
-        }
+        
         [HttpGet("PagesAmount")]
         public async Task<ActionResult<int>> GetPagesAmount()
         {
@@ -59,19 +49,7 @@ namespace ProductApi.Controllers
             if (pagesAmount == 0 || pagesAmount < 0) { pagesAmount = 1; }
             return Ok(pagesAmount);
         }
-        [HttpGet("PagesAmountAdmin")]
-        public async Task<ActionResult<int>> GetPagesAmountAdmin()
-        {
-            int pagesAmount = 1;
-            var totalProducts = (await _productsRepository.GetAllAsync())
-                .Count();
-            if (totalProducts > pageSize)
-            {
-                pagesAmount = (totalProducts % pageSize == 0) ? (totalProducts % pageSize) : (totalProducts % pageSize + 1);
-            }
-            if (pagesAmount == 0) { pagesAmount = 1; }
-            return Ok(pagesAmount);
-        }
+        
         /// <summary>
         /// Search product with keyword include in name, description, brand of products
         /// </summary>
@@ -79,7 +57,7 @@ namespace ProductApi.Controllers
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        [HttpGet("Search/")]
+        [HttpGet("Search")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 ) return BadRequest();
@@ -97,7 +75,7 @@ namespace ProductApi.Controllers
 
         }
         
-        [HttpGet("Filter/")]
+        [HttpGet("Filter")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetWithFilter(
                                                                                [FromQuery] string? ProductBrand, 
                                                                                [FromQuery] string? ProductType,
@@ -164,7 +142,7 @@ namespace ProductApi.Controllers
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        [HttpGet("ByType/")]
+        [HttpGet("ByType")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductType([FromQuery] string productType, [FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
@@ -186,7 +164,7 @@ namespace ProductApi.Controllers
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        [HttpGet("ByAscendingPrice/")]
+        [HttpGet("ByAscendingPrice")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByAscendingPrice([FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
@@ -207,7 +185,7 @@ namespace ProductApi.Controllers
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        [HttpGet("ByDescendingPrice/")]
+        [HttpGet("ByDescendingPrice")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByDescendingPrice([FromQuery] int pageNumber = 1)
         {
             if (pageNumber < 1 || pageSize < 1) return BadRequest();
@@ -343,6 +321,32 @@ namespace ProductApi.Controllers
                 return Ok();
             }
             return NotFound();
+        }
+
+
+        [HttpGet("GetAllAdminSide")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsyncAdmin([FromQuery] int pageNumber = 1)
+        {
+            if (pageNumber < 1) return BadRequest();
+            var products = (await _productsRepository.GetAllAsync())
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
+            return Ok(products);
+        }
+        [HttpGet("PagesAmountAdmin")]
+        public async Task<ActionResult<int>> GetPagesAmountAdmin()
+        {
+            int pagesAmount = 1;
+            var totalProducts = (await _productsRepository.GetAllAsync())
+                .Count();
+            if (totalProducts > pageSize)
+            {
+                pagesAmount = (totalProducts % pageSize == 0) ? (totalProducts % pageSize) : (totalProducts % pageSize + 1);
+            }
+            if (pagesAmount == 0) { pagesAmount = 1; }
+            return Ok(pagesAmount);
         }
     }
 }
