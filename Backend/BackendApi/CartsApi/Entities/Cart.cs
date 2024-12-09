@@ -8,7 +8,7 @@ namespace CartApi.Entities
 
         public Guid? UserId { get; set; }
 
-        public List<ProductInCart>? ListProductInCart { get; set; }
+        public List<ProductInCart> ListProductInCart { get; set; }
 
 
         //

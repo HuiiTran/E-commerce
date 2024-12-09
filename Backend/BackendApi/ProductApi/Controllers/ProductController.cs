@@ -307,6 +307,7 @@ namespace ProductApi.Controllers
             existingProduct.ProductRefeshRate = updateProductDto.ProductRefeshRate;
             existingProduct.ProductSpecialFeature = updateProductDto.ProductSpecialFeature;
             existingProduct.isDeleted = updateProductDto.isDeleted;
+            existingProduct.DiscountPercentage = updateProductDto.DiscountPercentage;
             existingProduct.LatestUpdatedDate = DateTime.UtcNow;
 
             if(updateProductDto.ProductImages == null)

@@ -22,7 +22,7 @@ namespace ProductApi.Entities
         public required string ProductResolution { get; set; }
         public required string ProductRefeshRate { get; set; }
         public required string ProductSpecialFeature { get; set; }
-
+        public int DiscountPercentage { get; set; } = 0;
 
         /// <summary>
         /// More information

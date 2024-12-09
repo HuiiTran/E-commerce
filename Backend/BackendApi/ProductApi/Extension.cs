@@ -27,6 +27,7 @@ namespace ProductApi
                 product.ProductResolution,
                 product.ProductRefeshRate,
                 product.ProductSpecialFeature,
+                product.DiscountPercentage,
                 product.isDeleted,
                 product.CreatedDate,
                 product.LatestUpdatedDate
@@ -118,6 +119,39 @@ namespace ProductApi
                 productResolution.isDeleted,
                 productResolution.CreatedDate,
                 productResolution.LatestUpdatedDate
+                );
+        }
+
+        public static ProductSpecialFeatureDto ProductSpecialFeatureAsDto(this ProductSpecialFeature productSpecialFeature)
+        {
+            return new ProductSpecialFeatureDto(
+                productSpecialFeature.Id,
+                productSpecialFeature.ProductSpecialFeatureName,
+                productSpecialFeature.isDeleted,
+                productSpecialFeature.CreatedDate,
+                productSpecialFeature.LatestUpdatedDate
+                );
+        }
+
+        public static ProductStorageDto ProductStorageAsDto(this ProductStorage productStorage)
+        {
+            return new ProductStorageDto(
+                productStorage.Id,
+                productStorage.ProductStorageName,
+                productStorage.isDeleted,
+                productStorage.CreatedDate,
+                productStorage.LatestUpdatedDate
+                );
+        }
+
+        public static ProductTypeDto ProductTypeAsDto(this ProductType productType)
+        {
+            return new ProductTypeDto(
+                productType.Id,
+                productType.TypeName,
+                productType.isDeleted,
+                productType.CreatedDate,
+                productType.LatestUpdatedDate
                 );
         }
     }

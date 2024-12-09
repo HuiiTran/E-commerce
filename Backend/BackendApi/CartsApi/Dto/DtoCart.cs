@@ -5,16 +5,15 @@ namespace CartsApi.Dto
     public record CartDto(
         Guid Id,
         Guid? UserId,
-        List<ProductInCart>? ListProductInCart,
+        List<ProductInCart> ListProductInCart,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset UpdatedDate
         );
-    public record CreateDto(
-        Guid? UserId,
-        List<ProductInCart>? ListProductInCart
+    public record CreateCartDto(
+        List<ProductInCart> ListProductInCart
         );
-    public record UpdateDto(
+    public record UpdateCartDto(
         List<ProductInCart>? ListProductInCart,
         bool isDeleted
         );

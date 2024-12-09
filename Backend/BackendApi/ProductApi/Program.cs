@@ -34,7 +34,6 @@ builder.Services.AddMongo()
     .AddMongoRepository<ProductResolution>("ProductResolution")
     .AddMongoRepository<ProductRefeshRate>("ProductRefeshRate")
     .AddMongoRepository<ProductSpecialFeature>("ProductSpecialFeature")
-
     .AddMassTransitWithRabbitMq();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

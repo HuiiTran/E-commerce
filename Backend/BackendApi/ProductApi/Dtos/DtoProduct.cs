@@ -22,6 +22,7 @@ namespace ProductApi.Dtos
         string ProductResolution,
         string ProductRefeshRate,
         string ProductSpecialFeature,
+        int DiscountPercentage,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset LatestUpdatedDate
@@ -62,7 +63,8 @@ namespace ProductApi.Dtos
         string ProductResolution,
         string ProductRefeshRate,
         string ProductSpecialFeature,
-        bool isDeleted
+        bool isDeleted,
+        int DiscountPercentage
         );
 
 }

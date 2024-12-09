@@ -3,6 +3,7 @@
     public record ReviewDto(
         Guid Id,
         Guid ProductId,
+        Guid OwnerId,
         string? ReviewText,
         List<string>? ReviewImages,
         int Rated,
@@ -10,13 +11,14 @@
         );
     public record CreateReviewDto(
         Guid ProductId,
+        Guid OwnerId,
         string? ReviewText,
-        List<string>? ReviewImages,
+        List<IFormFile>? ReviewImages,
         int Rated
         );
     public record UpdateReviewDto(
         string? ReviewText,
-        List<string>? ReviewImages,
+        List<IFormFile>? ReviewImages,
         int Rated,
         bool isDeleted
         );

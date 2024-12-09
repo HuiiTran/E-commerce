@@ -10,6 +10,7 @@ namespace ReviewsApi
             return new ReviewDto(
                 review.Id,
                 review.ProductId,
+                review.OwnerId,
                 review.ReviewText,
                 review.ReviewImages,
                 review.Rated,
