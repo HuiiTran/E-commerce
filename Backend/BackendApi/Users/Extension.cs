@@ -20,7 +20,8 @@ namespace UsersApi
                 user.BoughtProducts,
                 user.isDeleted,
                 user.CreatedDate,
-                user.LatestUpdatedDate
+                user.LatestUpdatedDate,
+                user.Role
                 );
         }
     }

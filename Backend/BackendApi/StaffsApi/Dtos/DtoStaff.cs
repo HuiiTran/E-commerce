@@ -8,6 +8,8 @@
         string? Name,
         string? Phone,
         string? Image,
+        string? Addres,
+        string Role,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset LatestUpdatedDate

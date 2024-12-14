@@ -34,13 +34,13 @@ namespace ProductApi.Controllers
                 .Select(product => product.AsDto());
             return Ok(products);
         }
-        
+
         [HttpGet("PagesAmount")]
         public async Task<ActionResult<int>> GetPagesAmount()
         {
             int pagesAmount = 1;
             var totalProducts = (await _productsRepository.GetAllAsync())
-                .Where (p => p.isDeleted == false)
+                .Where(p => p.isDeleted == false)
                 .Count();
             if (totalProducts > pageSize)
             {
@@ -49,7 +49,7 @@ namespace ProductApi.Controllers
             if (pagesAmount == 0 || pagesAmount < 0) { pagesAmount = 1; }
             return Ok(pagesAmount);
         }
-        
+
         /// <summary>
         /// Search product with keyword include in name, description, brand of products
         /// </summary>
@@ -60,24 +60,24 @@ namespace ProductApi.Controllers
         [HttpGet("Search")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1 ) return BadRequest();
-         
+            if (pageNumber < 1) return BadRequest();
+
             var products = (await _productsRepository.GetAllAsync())
-                .Where(p => (p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString) && p.isDeleted == false ))
+                .Where(p => (p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString) && p.isDeleted == false))
                 .OrderByDescending(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .Select(product => product.AsDto());
 
-            if (products != null) return Ok(products);                
+            if (products != null) return Ok(products);
 
             return NotFound();
 
         }
-        
+
         [HttpGet("Filter")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetWithFilter(
-                                                                               [FromQuery] string? ProductBrand, 
+                                                                               [FromQuery] string? ProductBrand,
                                                                                [FromQuery] string? ProductType,
                                                                                [FromQuery] string? ProductOperatingSystem,
                                                                                [FromQuery] string? ProductConnectivity,
@@ -89,15 +89,15 @@ namespace ProductApi.Controllers
                                                                                [FromQuery] string? ProductSpecialFeature,
                                                                                [FromQuery] int? PriceMin,
                                                                                [FromQuery] int? PriceMax,
-                                                                               [FromQuery] string? Order, 
+                                                                               [FromQuery] string? Order,
                                                                                [FromQuery] int pageNumber = 1
                                                                                )
         {
-            if (pageNumber < 1 ) return BadRequest();
+            if (pageNumber < 1) return BadRequest();
             if (PriceMax != null && PriceMin != null && PriceMax < PriceMin)
             {
                 (PriceMin, PriceMax) = (PriceMax, PriceMin);
-            } 
+            }
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p =>
                 ((ProductBrand == null) ? true : p.ProductBrand == ProductBrand)
@@ -114,11 +114,11 @@ namespace ProductApi.Controllers
                 && ((PriceMax == null) ? true : p.ProductPrice <= PriceMax)
                 && (p.isDeleted == false)
                 );
-                
-                
+
+
 
             if (products == null) return NotFound();
-            
+
             if (Order == "Ascending")
             {
                 var product = products.OrderBy(p => p.ProductPrice)
@@ -226,7 +226,7 @@ namespace ProductApi.Controllers
         /// <param name="createProductDto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> PostAsync([FromForm]CreateProductDto createProductDto)
+        public async Task<ActionResult<ProductDto>> PostAsync([FromForm] CreateProductDto createProductDto)
         {
             var product = new Product
             {
@@ -292,7 +292,7 @@ namespace ProductApi.Controllers
             existingProduct.DiscountPercentage = updateProductDto.DiscountPercentage;
             existingProduct.LatestUpdatedDate = DateTime.UtcNow;
 
-            if(updateProductDto.ProductImages == null)
+            if (updateProductDto.ProductImages == null)
             {
                 existingProduct.ProductImages = existingImages;
             }
@@ -312,6 +312,18 @@ namespace ProductApi.Controllers
             await _productsRepository.UpdateAsync(existingProduct);
 
             return Ok();
+        }
+        [HttpPut("ProductQuantity{id}")]
+        public async Task<IActionResult> PutProductQuantity(Guid id, [FromQuery]int soldQuantity)
+        {
+            var product = await _productsRepository.GetAsync(id);
+            if (product == null) { return NotFound(); }
+            product.ProductQuantity -= soldQuantity;
+            product.ProductSoldQuantity += soldQuantity;
+            await _productsRepository.UpdateAsync(product);
+
+            return Ok();
+
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync(Guid id)

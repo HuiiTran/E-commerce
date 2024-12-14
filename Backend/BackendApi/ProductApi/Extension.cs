@@ -1,4 +1,5 @@
-﻿using ProductApi.Dtos;
+﻿using MassTransit.SagaStateMachine;
+using ProductApi.Dtos;
 using ProductApi.Entities;
 using System.Runtime.CompilerServices;
 
@@ -152,6 +153,28 @@ namespace ProductApi
                 productType.isDeleted,
                 productType.CreatedDate,
                 productType.LatestUpdatedDate
+                );
+        }
+
+        public static ImportProductBillsDto importProductBillsAsDto(this ImportProductBill importProductBill, List<Product> productList, string personName )
+        {
+            return new ImportProductBillsDto(
+                importProductBill.Id,
+                importProductBill.PersonId,
+                productList,
+                personName,
+                importProductBill.Total,
+                importProductBill.IsDeleted,
+                importProductBill.CreatedDate
+                );
+        }
+
+        public static AllImportProductBillDto AllImportProductBillAsDto(this ImportProductBill importProductBill)
+        {
+            return new AllImportProductBillDto(
+                importProductBill.Id,
+                importProductBill.Total,
+                importProductBill.CreatedDate
                 );
         }
     }

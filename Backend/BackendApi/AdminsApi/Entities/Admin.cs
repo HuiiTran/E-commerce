@@ -11,6 +11,7 @@ namespace AdminsApi.Entities
 
         public string? Name { get; set; }
         public string? PhoneNumber { get; set; }
+        public string Role = "Admin";
 
 
         public bool isDeleted { get; set; } = false;

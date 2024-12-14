@@ -79,6 +79,21 @@ namespace UsersApi.Controllers
             await _userRepository.UpdateAsync(user);
             return Ok(user);
         }
+        [HttpPut("ChangePassword{id}")]
+        public async Task<IActionResult> ChangePassword(Guid id,ChangePasswordDto changePasswordDto)
+        {
+
+            var user = await _userRepository.GetAsync(id);
+            if(user == null) { return NotFound(); }
+            if (user.Password == changePasswordDto.OldPassword)
+            {
+                user.Password = changePasswordDto.newPassword;
+                await _userRepository.UpdateAsync(user);
+
+                return Ok();
+            }
+            return BadRequest();
+        }
         [HttpPut("AddMoreBoughtProduct")]
         public async Task<IActionResult> AddMoreBoughtProduct([FromQuery] Guid userId, [FromQuery] Guid productId)
         {
@@ -94,6 +109,21 @@ namespace UsersApi.Controllers
 
             await _userRepository.UpdateAsync(user);
             return Ok(user);
+        }
+        [HttpGet("isBoughtProduct")]
+        public async Task<ActionResult> CheckBought([FromQuery]Guid userId, [FromQuery]Guid productId)
+        {
+            var user = await _userRepository.GetAsync(userId);
+            if (user == null) return NotFound();
+            foreach(var product in user.BoughtProducts)
+            {
+                if(product != productId)
+                {
+                    return BadRequest();
+                }
+            }
+
+            return Ok();
         }
 
     }

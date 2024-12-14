@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CartsApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4894a2cbb8c097a669301cb42aeb62d51319f3df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81e1819495597346fcbcc726c1c018e694e59773")]
 [assembly: System.Reflection.AssemblyProductAttribute("CartsApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CartsApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

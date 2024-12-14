@@ -15,6 +15,8 @@ namespace StaffsApi
                 staff.Name,
                 staff.PhoneNumber,
                 staff.Image,
+                staff.Address,
+                staff.Role,
                 staff.isDeleted,
                 staff.CreatedDate,
                 staff.LatestUpdatedDate

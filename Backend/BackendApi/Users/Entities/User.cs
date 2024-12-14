@@ -14,12 +14,12 @@ namespace UsersApi.Entities
         public string? FullName { get; set; }
         public List<string>? PhoneNumber { get; set; }
         public List<string>? Address { get; set; }
-
+        public string Role = "User";
 
         //public Guid CartId { get; set; }
 
 
-        public List<Guid>? BoughtProducts {  get; set; }
+        public List<Guid>? BoughtProducts {  get; set; } = new List<Guid>();
 
 
         public bool isDeleted { get; set; } = false;

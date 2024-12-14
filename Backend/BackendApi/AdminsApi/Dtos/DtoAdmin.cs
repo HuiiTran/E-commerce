@@ -9,6 +9,7 @@ namespace AdminsApi.Dtos
         string? Email,
         string? Name,
         string? PhoneNumber,
+        string Role,
         bool isDeleted,
         DateTimeOffset Createddate,
         DateTimeOffset LatestUpdatedDate

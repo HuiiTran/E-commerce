@@ -68,27 +68,6 @@ namespace CartsApi.Controllers
         [HttpGet("userId={userid}")]
         public async Task<ActionResult<CartInformationDto>> GetByUserIdAsync(Guid userid)
         {
-            /*List<Product> CartProducts = new List<Product>();
-            var userCart = (await _cartRepository.GetAllAsync())
-                .Where(cart => cart.UserId == userid)
-                .FirstOrDefault();
-            if (userCart == null)
-            {
-                return NotFound();
-            }
-
-            foreach(var cartProduct in userCart.ListProductInCart)
-            {
-                var product = await _productRepository.GetAsync(cartProduct.ProductId);
-                if (product == null)
-                {
-                    continue;
-                }
-                CartProducts.Add(product);
-            }
-
-
-            return userCart.SingleCartDtoAsDto(CartProducts);*/
             List<Product> CartProducts = new List<Product>();
             decimal totalPrice = 0;
             var cart = (await _cartRepository.GetAllAsync())

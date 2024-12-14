@@ -13,7 +13,8 @@
         List<Guid>? BoughtProducts,
         bool isDeleted,
         DateTimeOffset CreatedDate,
-        DateTimeOffset LatestUpdatedDate
+        DateTimeOffset LatestUpdatedDate,
+        string Role
         );
     public record CreateUserDto(
         string? UserName,
@@ -33,5 +34,9 @@
         List<string>? Address,
         List<Guid>? BoughtProducts,
         bool isDeleted
+        );
+    public record ChangePasswordDto(
+        string OldPassword,
+        string newPassword
         );
 }
