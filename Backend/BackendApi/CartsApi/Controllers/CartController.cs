@@ -144,10 +144,12 @@ namespace CartsApi.Controllers
             return Ok(cart);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(Guid id, UpdateCartDto updateCartDto)
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> PutAsync(Guid userId, UpdateCartDto updateCartDto)
         {
-            var existingCart = await _cartRepository.GetAsync(id);
+            var existingCart = (await _cartRepository.GetAllAsync())
+                .Where(c => c.UserId == userId)
+                .FirstOrDefault();
             if (updateCartDto.ListProductInCart == null)
             {
                 return BadRequest();
@@ -159,6 +161,40 @@ namespace CartsApi.Controllers
 
                 await _cartRepository.UpdateAsync(existingCart);
                 return Ok(existingCart);
+            }
+            return NotFound();
+        }
+
+        [HttpPut("PutOneItem{userId}")]
+        public async Task<IActionResult> PutOneItem(Guid userId, ProductInCart productInCart)
+        {
+            var existingCart = (await _cartRepository.GetAllAsync())
+                .Where(c => c.UserId == userId)
+                .FirstOrDefault();
+            if (productInCart == null)
+            {
+                return BadRequest();
+            }
+            if (existingCart != null)
+            {
+                foreach(var item in existingCart.ListProductInCart)
+                {
+                    if(item.ProductId == productInCart.ProductId)
+                    {
+                        if (productInCart.Quantity == 0)
+                        {
+                            existingCart.ListProductInCart.Remove(item);
+                            break;
+                        }
+                        item.Quantity = productInCart.Quantity;
+                    }
+                    else
+                    {
+                        existingCart.ListProductInCart.Add(productInCart);
+                    }
+                }
+                await _cartRepository.UpdateAsync(existingCart);
+                return Ok();
             }
             return NotFound();
         }
