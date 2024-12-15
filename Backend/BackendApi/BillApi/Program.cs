@@ -22,6 +22,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddMongo()
     .AddMongoRepository<User>("UserAccount")
     .AddMongoRepository<Staff>("StaffAccount")
+    .AddMongoRepository<Product>("Product")
+    .AddMongoRepository<Bill>("Bill")
     .AddMassTransitWithRabbitMq();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

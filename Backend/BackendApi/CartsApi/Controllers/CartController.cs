@@ -30,7 +30,15 @@ namespace CartsApi.Controllers
                 .Select(cart => cart.AsDto());
             return Ok(carts);
         }
-
+        [HttpGet("GetUserBaseCart{userId}")]
+        public async Task<ActionResult<CartDto>> GetUserBaseCart(Guid userId)
+        {
+            var cart = (await _cartRepository.GetAllAsync())
+                .Where(c => c.UserId == userId)
+                .FirstOrDefault();
+            if (cart == null) return NotFound();
+            return cart.AsDto();
+        }
         [HttpGet("allCart")]
         public async Task<ActionResult<IEnumerable<SingleCartDto>>> GetAllCartAsync()
         {
