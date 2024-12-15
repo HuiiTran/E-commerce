@@ -58,15 +58,11 @@ namespace ProductApi.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Search")]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString, [FromQuery] int pageNumber = 1)
+        public async Task<ActionResult<IEnumerable<ProductDto>>> SearchAsync([FromQuery] string searchString)
         {
-            if (pageNumber < 1) return BadRequest();
-
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => (p.ProductName.Contains(searchString) || p.ProductDescription.Contains(searchString) || p.ProductBrand.Contains(searchString) && p.isDeleted == false))
                 .OrderByDescending(p => p.Id)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
                 .Select(product => product.AsDto());
 
             if (products != null) return Ok(products);

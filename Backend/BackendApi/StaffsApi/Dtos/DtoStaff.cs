@@ -20,7 +20,7 @@
         string? Email,
         string? Name,
         string? Phone,
-        string? Image
+        IFormFile? Image
         );
     public record UpdateStaffDto(
         string UserName,
@@ -28,7 +28,7 @@
         string? Email,
         string? Name,
         string? Phone,
-        string? Image,
+        IFormFile? Image,
         bool isDeleted
         );
 }
