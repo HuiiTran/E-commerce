@@ -11,16 +11,21 @@ namespace UsersApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IRepository<User> _userRepository;
-
+        private const int pageSize = 10;
         public UsersController(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAsync()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAsync([FromQuery]int pageNumber = 1)
         {
+            if (pageNumber < 1) { return BadRequest(); }
+
             var users = (await _userRepository.GetAllAsync())
+                .OrderBy(s => s.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .Select(user => user.AsDto());
             return Ok(users);
         }
@@ -33,6 +38,16 @@ namespace UsersApi.Controllers
                 return NotFound();
             }
             return user.AsDto();
+        }
+        [HttpGet("Search")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> SearchAsync([FromQuery]string searchString, [FromQuery]int pageNumber)
+        {
+            var users = (await _userRepository.GetAllAsync())
+                .Where(u => u.FullName.Contains(searchString) || u.Email.Contains(searchString) || u.PhoneNumber.Contains(searchString))
+                .OrderBy(u => u.Id)
+                .Select(user => user.AsDto());
+            if (users == null) return NotFound();
+            return Ok(users);
         }
         [HttpPost]
         public async Task<ActionResult<UserDto>> PostAsync(CreateUserDto createUserDto)

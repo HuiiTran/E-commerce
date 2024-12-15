@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductApi.Dtos;
 using ProductApi.Entities;
 using ServicesCommon;
+using System.ComponentModel;
 
 namespace ProductApi.Controllers
 {
@@ -44,6 +45,71 @@ namespace ProductApi.Controllers
             var bills = (await _productsBillRepository.GetAllAsync())
                 .Select(bill => bill.AllImportProductBillAsDto());
             return Ok(bills);
+        }
+        [HttpGet("statisticBetween")]
+        public async Task<ActionResult<decimal>> GetStatisticBetweenAsync([FromQuery]int startMonth, [FromQuery] int endMonth, [FromQuery] int year)
+        {
+            if (startMonth < 1 && startMonth > 12) return BadRequest();
+            if (endMonth < 1 && endMonth > 12) return BadRequest();
+            if (startMonth > endMonth) return BadRequest();
+            decimal totalPriceInPeriod = 0;
+            var bills = (await _productsBillRepository.GetAllAsync())
+                .Where(b => (b.CreatedDate.Month <= endMonth && b.CreatedDate.Month >= startMonth && b.CreatedDate.Year == year));
+            foreach (var bill in bills)
+            {
+                totalPriceInPeriod += bill.Total;
+            }
+            return Ok(totalPriceInPeriod);
+        }
+        [HttpGet("statisticMonth")]
+        public async Task<ActionResult<decimal>> GetStatisticMonth([FromQuery]int month, [FromQuery]int year)
+        {
+            if (month < 1 && month > 12) return BadRequest();
+            decimal totalPriceInMonth = 0;
+            var bills = (await _productsBillRepository.GetAllAsync())
+                .Where(b => b.CreatedDate.Month == month && b.CreatedDate.Year == year);
+            foreach(var bill in bills)
+            {
+                totalPriceInMonth += bill.Total;
+            }
+            return Ok(totalPriceInMonth);
+        }
+        [HttpGet("statisticQuarter")]
+        public async Task<ActionResult<decimal>> GetStatisticQuarter([FromQuery] int quarter, [FromQuery]int year)
+        {
+            if (quarter < 1 && quarter > 4) return BadRequest();
+            var startMonth = 0;
+            var endMonth = 0;
+            switch (quarter)
+            {
+                case 1:
+                    startMonth = 1;
+                    endMonth = 3;
+                    break;
+                case 2: 
+                    startMonth = 4; 
+                    endMonth = 6; 
+                    break;
+                case 3:
+                    startMonth = 7;
+                    endMonth = 9;
+                    break;
+                case 4:
+                    startMonth = 10;
+                    endMonth = 12;
+                    break;
+                default: 
+                    return BadRequest();
+            }
+
+            decimal totalPriceInQuarter = 0;
+            var bills = (await _productsBillRepository.GetAllAsync())
+                .Where(b => (b.CreatedDate.Month <= endMonth && b.CreatedDate.Month >= startMonth && b.CreatedDate.Year == year));
+            foreach (var bill in bills)
+            {
+                totalPriceInQuarter += bill.Total;
+            }
+            return Ok(totalPriceInQuarter);
         }
 
         [HttpGet("{id}")]
