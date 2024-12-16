@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Messages;
+using Microsoft.AspNetCore.Mvc;
 using ReviewsApi.Dto;
 using ReviewsApi.Entities;
 using ServicesCommon;
@@ -29,9 +30,10 @@ namespace ReviewsApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ReviewDto>> GetByIdAsync(Guid id)
         {
+            CustomMessages customMessages = new CustomMessages();
             var review = await _reviewRepository.GetAsync(id);
 
-            if (review == null) return NotFound();
+            if (review == null) return NotFound(customMessages.MSG_01);
 
             return review.AsDto();
         }
@@ -65,23 +67,24 @@ namespace ReviewsApi.Controllers
         [HttpPost]
         public async Task<ActionResult<ReviewDto>> PostAsync([FromForm]CreateReviewDto createReviewDto)
         {
+            CustomMessages customMessages = new CustomMessages();
             var existingReview = (await _reviewRepository.GetAllAsync())
                 .Where(eR => eR.OwnerId == createReviewDto.OwnerId && eR.ProductId == createReviewDto.ProductId)
                 .FirstOrDefault();
             if (existingReview != null)
             {
-                return BadRequest("You had reviewed this product");
+                return BadRequest(customMessages.MSG_13);
             }
             var user = await _userRepository.GetAsync(createReviewDto.OwnerId);
             if ( user.BoughtProducts == null)
             {
-                return BadRequest("You had not buy any product");
+                return BadRequest(customMessages.MSG_14);
             }
             foreach (var product in user.BoughtProducts)
             {
                 if(createReviewDto.ProductId != product)
                 {
-                    return BadRequest("You had not buy this product");
+                    return BadRequest(customMessages.MSG_15);
                 }
             }
 
@@ -111,7 +114,7 @@ namespace ReviewsApi.Controllers
 
 
             await _reviewRepository.CreateAsync(review);
-            return Ok(review);
+            return Ok(customMessages.MSG_17);
         }
 
         [HttpPut("{reviewId}")]
@@ -119,6 +122,7 @@ namespace ReviewsApi.Controllers
                                                    [FromQuery] Guid userId, 
                                                    [FromForm]UpdateReviewDto updateReviewDto)
             {
+            CustomMessages customMessages = new CustomMessages();
             var existingReview = (await _reviewRepository.GetAllAsync())
                 .Where(r => r.Id == reviewId && r.OwnerId == userId)
                 .FirstOrDefault();
@@ -147,13 +151,14 @@ namespace ReviewsApi.Controllers
                     existingReview.ReviewImages = tempListImages;
                 }
                 await _reviewRepository.UpdateAsync(existingReview);
-                return Ok(existingReview);
+                return Ok(customMessages.MSG_18);
             }
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync(Guid reviewId, Guid userId)
         {
+            CustomMessages customMessages = new CustomMessages();
             var review = (await _reviewRepository.GetAllAsync())
                 .Where(r => r.Id == reviewId && r.OwnerId == userId)
                 .FirstOrDefault();
@@ -161,8 +166,9 @@ namespace ReviewsApi.Controllers
             {
                 review.isDeleted = true;
                 await _reviewRepository.UpdateAsync(review);
+                return Ok(customMessages.MSG_19);
             }
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
         }
     }
 }

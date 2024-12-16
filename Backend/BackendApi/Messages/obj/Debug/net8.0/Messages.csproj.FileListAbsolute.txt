@@ -1,0 +1,12 @@
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\bin\Debug\net8.0\Messages.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\bin\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\bin\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\refint\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Messages\obj\Debug\net8.0\ref\Messages.dll

@@ -120,6 +120,7 @@ namespace CartsApi.Controllers
                     {
                         if (newProduct.ProductId == existingProduct.ProductId)
                         {
+                            
                             existingProduct.Quantity += newProduct.Quantity;
                         }
                         else
@@ -144,7 +145,7 @@ namespace CartsApi.Controllers
             return Ok(cart);
         }
 
-        [HttpPut("{userId}")]
+        /*[HttpPut("{userId}")]
         public async Task<IActionResult> PutAsync(Guid userId, UpdateCartDto updateCartDto)
         {
             var existingCart = (await _cartRepository.GetAllAsync())
@@ -163,7 +164,7 @@ namespace CartsApi.Controllers
                 return Ok(existingCart);
             }
             return NotFound();
-        }
+        }*/
 
         [HttpPut("PutOneItem{userId}")]
         public async Task<IActionResult> PutOneItem(Guid userId, ProductInCart productInCart)

@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminContract", "AdminContr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaffContract", "StaffContract\StaffContract.csproj", "{8B9BF6A5-9E6F-4085-8C71-8E97F3058CF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthApi", "AuthApi\AuthApi.csproj", "{2419BA70-28C1-4010-B9D8-C46E1EAF2E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApi", "AuthApi\AuthApi.csproj", "{2419BA70-28C1-4010-B9D8-C46E1EAF2E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{7F4ABC5A-C12E-4511-B81F-AC16A6155104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +109,10 @@ Global
 		{2419BA70-28C1-4010-B9D8-C46E1EAF2E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2419BA70-28C1-4010-B9D8-C46E1EAF2E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2419BA70-28C1-4010-B9D8-C46E1EAF2E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4ABC5A-C12E-4511-B81F-AC16A6155104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4ABC5A-C12E-4511-B81F-AC16A6155104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4ABC5A-C12E-4511-B81F-AC16A6155104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4ABC5A-C12E-4511-B81F-AC16A6155104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

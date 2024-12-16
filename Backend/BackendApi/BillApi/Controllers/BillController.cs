@@ -140,7 +140,11 @@ namespace BillApi.Controllers
                 ownerName = await _staffRepository.GetAsync(OwnerId)
                     .Select(staff => staff.Name);
             }
-
+            foreach(var item in  createCartDto.ListProductInBill)
+            {
+                if (item.Quantity == 0)
+                    return BadRequest();
+            }
             Bill bill = new Bill
             {
                 OwnerCreatedId = OwnerId,

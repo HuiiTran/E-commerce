@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Messages;
+using Microsoft.AspNetCore.Mvc;
 using ProductApi.Dtos;
 using ProductApi.Entities;
 using ServicesCommon;
@@ -11,7 +12,7 @@ namespace ProductApi.Controllers
     {
         private readonly IRepository<Product> _productsRepository;
         private const int pageSize = 10;
-
+        private CustomMessages customMessages = new CustomMessages();
 
         public ProductController(IRepository<Product> productsRepository)
         {
@@ -25,7 +26,7 @@ namespace ProductApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsync([FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1) return BadRequest();
+            if (pageNumber < 1) return BadRequest(customMessages.MSG_23);
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => p.isDeleted == false)
                 .OrderBy(p => p.Id)
@@ -67,7 +68,7 @@ namespace ProductApi.Controllers
 
             if (products != null) return Ok(products);
 
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
 
         }
 
@@ -113,7 +114,7 @@ namespace ProductApi.Controllers
 
 
 
-            if (products == null) return NotFound();
+            if (products == null) return NotFound(customMessages.MSG_01);
 
             if (Order == "Ascending")
             {
@@ -142,7 +143,7 @@ namespace ProductApi.Controllers
         [HttpGet("ByType")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductType([FromQuery] string productType, [FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1 || pageSize < 1) return BadRequest();
+            if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
 
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => p.ProductType.Contains(productType) && p.isDeleted == false)
@@ -164,7 +165,7 @@ namespace ProductApi.Controllers
         [HttpGet("ByAscendingPrice")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByAscendingPrice([FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1 || pageSize < 1) return BadRequest();
+            if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
 
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => p.isDeleted == false)
@@ -186,7 +187,7 @@ namespace ProductApi.Controllers
         [HttpGet("ByDescendingPrice")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByDescendingPrice([FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1 || pageSize < 1) return BadRequest();
+            if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
 
             var products = (await _productsRepository.GetAllAsync())
                 .Where(p => p.isDeleted == false)
@@ -210,8 +211,8 @@ namespace ProductApi.Controllers
         {
             var product = await _productsRepository.GetAsync(id);
 
-            if (product == null) return NotFound();
-            if (product.isDeleted == true) return NotFound();
+            if (product == null) return NotFound(customMessages.MSG_01);
+            if (product.isDeleted == true) return NotFound(customMessages.MSG_01);
             return product.AsDto();
         }
 
@@ -258,7 +259,7 @@ namespace ProductApi.Controllers
             product.ProductImages = tempImage;
 
             await _productsRepository.CreateAsync(product);
-            return Ok(product);
+            return Ok(customMessages.MSG_17);
         }
 
         [HttpPut("{id}")]
@@ -268,7 +269,7 @@ namespace ProductApi.Controllers
             List<string>? tempImages = new List<string>();
             var existingImages = existingProduct.ProductImages;
 
-            if (existingProduct == null) return NotFound();
+            if (existingProduct == null) return NotFound(customMessages.MSG_01);
             existingProduct.ProductName = updateProductDto.ProductName;
             existingProduct.ProductDescription = updateProductDto.ProductDescription;
             existingProduct.ProductPrice = updateProductDto.ProductPrice;
@@ -307,18 +308,18 @@ namespace ProductApi.Controllers
             }
             await _productsRepository.UpdateAsync(existingProduct);
 
-            return Ok();
+            return Ok(customMessages.MSG_18);
         }
         [HttpPut("ProductQuantity{id}")]
         public async Task<IActionResult> PutProductQuantity(Guid id, [FromQuery]int soldQuantity)
         {
             var product = await _productsRepository.GetAsync(id);
-            if (product == null) { return NotFound(); }
+            if (product == null) { return NotFound(customMessages.MSG_01); }
             product.ProductQuantity -= soldQuantity;
             product.ProductSoldQuantity += soldQuantity;
             await _productsRepository.UpdateAsync(product);
 
-            return Ok();
+            return Ok(customMessages.MSG_18);
 
         }
         [HttpDelete]
@@ -330,16 +331,16 @@ namespace ProductApi.Controllers
                 product.isDeleted = true;
                 product.LatestUpdatedDate = DateTimeOffset.UtcNow;
                 await _productsRepository.UpdateAsync(product);
-                return Ok();
+                return Ok(customMessages.MSG_19);
             }
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
         }
 
 
         [HttpGet("GetAllAdmin")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsyncAdmin([FromQuery] int pageNumber = 1)
         {
-            if (pageNumber < 1) return BadRequest();
+            if (pageNumber < 1) return BadRequest(customMessages.MSG_23);
             var products = (await _productsRepository.GetAllAsync())
                 .OrderBy(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
@@ -375,7 +376,7 @@ namespace ProductApi.Controllers
 
             if (products != null) return Ok(products);
 
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
 
         }
         [HttpGet("ProductAdmin{id}")]
@@ -384,7 +385,7 @@ namespace ProductApi.Controllers
         {
             var product = await _productsRepository.GetAsync(id);
 
-            if (product == null) return NotFound();
+            if (product == null) return NotFound(customMessages.MSG_01);
             
             return product.AsDto();
         }

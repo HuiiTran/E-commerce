@@ -68,18 +68,22 @@ namespace AdminsApi.Controllers
             existingAdmin.LatestUpdatedDate = DateTime.UtcNow;
 
             await _adminRepository.UpdateAsync(existingAdmin);
-            return Ok(existingAdmin);
+            return Ok("Update success");
         }
 
         [HttpPut("Password/{id}")]
-        public async Task<IActionResult> PutPasswordAsync(Guid id, [FromForm] string passWord)
+        public async Task<IActionResult> PutPasswordAsync(Guid id, [FromForm] string oldPassword, [FromQuery]string newPassword)
         {
             var existingAdmin = await _adminRepository.GetAsync(id);
             if (existingAdmin == null)
             {
                 return NotFound();
             }
-            existingAdmin.Password = passWord;
+            if(existingAdmin.Password != oldPassword)
+            {
+                return BadRequest();
+            }
+            existingAdmin.Password = newPassword;
             existingAdmin.LatestUpdatedDate = DateTime.UtcNow;
 
             await _adminRepository.UpdateAsync(existingAdmin);
