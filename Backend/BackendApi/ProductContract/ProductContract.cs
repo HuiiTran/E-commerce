@@ -22,4 +22,8 @@ namespace ProductContract
         string ProductImage);
     public record ProductDelete(
         Guid id);
+
+    public record UpdateQuantity(
+        int quantity
+        );
 }

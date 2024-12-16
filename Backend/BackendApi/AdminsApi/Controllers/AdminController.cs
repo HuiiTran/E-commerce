@@ -1,5 +1,6 @@
 ﻿using AdminsApi.Dtos;
 using AdminsApi.Entities;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
 
@@ -10,6 +11,7 @@ namespace AdminsApi.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IRepository<Admin> _adminRepository;
+        private CustomMessages customMessages = new CustomMessages();
 
         public AdminController(IRepository<Admin> adminRepository)
         {
@@ -52,7 +54,7 @@ namespace AdminsApi.Controllers
 
             };
             await _adminRepository.CreateAsync(admin);
-            return Ok(admin);
+            return Ok(customMessages.MSG_17);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(Guid id, UpdateAdminDto updateAdminDto)
@@ -60,7 +62,7 @@ namespace AdminsApi.Controllers
             var existingAdmin = await _adminRepository.GetAsync(id);
             if (existingAdmin == null)
             {
-                return NotFound();
+                return NotFound(customMessages.MSG_01);
             }
             existingAdmin.Name = updateAdminDto.UserName;
             existingAdmin.PhoneNumber = updateAdminDto.PhoneNumber;
@@ -68,7 +70,7 @@ namespace AdminsApi.Controllers
             existingAdmin.LatestUpdatedDate = DateTime.UtcNow;
 
             await _adminRepository.UpdateAsync(existingAdmin);
-            return Ok("Update success");
+            return Ok(customMessages.MSG_18);
         }
 
         [HttpPut("Password/{id}")]
@@ -77,17 +79,17 @@ namespace AdminsApi.Controllers
             var existingAdmin = await _adminRepository.GetAsync(id);
             if (existingAdmin == null)
             {
-                return NotFound();
+                return NotFound(customMessages.MSG_01);
             }
             if(existingAdmin.Password != oldPassword)
             {
-                return BadRequest();
+                return BadRequest(customMessages.MSG_04);
             }
             existingAdmin.Password = newPassword;
             existingAdmin.LatestUpdatedDate = DateTime.UtcNow;
 
             await _adminRepository.UpdateAsync(existingAdmin);
-            return Ok(existingAdmin);
+            return Ok(customMessages.MSG_18);
         }
     }
 }

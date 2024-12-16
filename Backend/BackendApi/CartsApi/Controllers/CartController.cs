@@ -1,6 +1,7 @@
 ﻿using CartApi.Entities;
 using CartsApi.Dto;
 using CartsApi.Entities;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
 using ZstdSharp.Unsafe;
@@ -14,7 +15,7 @@ namespace CartsApi.Controllers
         private readonly IRepository<Cart> _cartRepository;
         private readonly IRepository<Product> _productRepository;
         private readonly IRepository<User> _userRepository;
-        
+        private CustomMessages customMessages = new CustomMessages();
 
         public CartController(IRepository<Cart> cartRepository, IRepository<Product> productRepository, IRepository<User> userRepository)
         {
@@ -36,7 +37,7 @@ namespace CartsApi.Controllers
             var cart = (await _cartRepository.GetAllAsync())
                 .Where(c => c.UserId == userId)
                 .FirstOrDefault();
-            if (cart == null) return NotFound();
+            if (cart == null) return NotFound(customMessages.MSG_01);
             return cart.AsDto();
         }
         [HttpGet("allCart")]
@@ -56,7 +57,7 @@ namespace CartsApi.Controllers
             var cart = (await _cartRepository.GetAsync(id));
             if (cart == null)
             {
-                return NotFound();
+                return NotFound(customMessages.MSG_01);
             }
             var user = (await _userRepository.GetAsync(cart.UserId));
                 
@@ -106,7 +107,7 @@ namespace CartsApi.Controllers
             foreach(var newProduct in createCartDto.ListProductInCart)
             {
                 if (newProduct.Quantity < 1)
-                    return BadRequest("Quantity must greater than 0");
+                    return BadRequest(customMessages.MSG_12);
             }
 
             var existingCart = (await _cartRepository.GetAllAsync())
@@ -130,7 +131,7 @@ namespace CartsApi.Controllers
                     }
                 }
                 await _cartRepository.UpdateAsync(existingCart);
-                return Ok(existingCart);
+                return Ok(customMessages.MSG_18);
             }
             var cart = new Cart
             {
@@ -142,7 +143,7 @@ namespace CartsApi.Controllers
             };
 
             await _cartRepository.CreateAsync(cart);
-            return Ok(cart);
+            return Ok(customMessages.MSG_19);
         }
 
         /*[HttpPut("{userId}")]
@@ -174,7 +175,7 @@ namespace CartsApi.Controllers
                 .FirstOrDefault();
             if (productInCart == null)
             {
-                return BadRequest();
+                return BadRequest(customMessages.MSG_02);
             }
             if (existingCart != null)
             {
@@ -195,9 +196,9 @@ namespace CartsApi.Controllers
                     }
                 }
                 await _cartRepository.UpdateAsync(existingCart);
-                return Ok();
+                return Ok(customMessages.MSG_18);
             }
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteAnItem([FromQuery] Guid cartId,[FromQuery] Guid itemId)
@@ -213,9 +214,9 @@ namespace CartsApi.Controllers
                     }
                 }
                 await _cartRepository.UpdateAsync(cart);
-                return Ok(cart);
+                return Ok(customMessages.MSG_19);
             }
-            return NotFound();
+            return NotFound(customMessages.MSG_01);
         }
 
     }

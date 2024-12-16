@@ -1,6 +1,7 @@
 ﻿using BillApi.Dto;
 using BillApi.Entities;
 using MassTransit.Initializers;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
 
@@ -14,7 +15,7 @@ namespace BillApi.Controllers
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Staff> _staffRepository;
         private readonly IRepository<Product> _productRepository;
-
+        private CustomMessages customMessages = new CustomMessages();
         public BillController(IRepository<Bill> billRepository, IRepository<User> userRepository, IRepository<Staff> staffRepository, IRepository<Product> productRepository)
         {
             _billRepository = billRepository;
@@ -61,9 +62,9 @@ namespace BillApi.Controllers
         [HttpGet("statisticBetween")]
         public async Task<ActionResult<decimal>> GetStatisticBetweenAsync([FromQuery] int startMonth, [FromQuery] int endMonth, [FromQuery] int year)
         {
-            if (startMonth < 1 && startMonth > 12) return BadRequest();
-            if (endMonth < 1 && endMonth > 12) return BadRequest();
-            if (startMonth > endMonth) return BadRequest();
+            if (startMonth < 1 && startMonth > 12) return BadRequest(customMessages.MSG_06);
+            if (endMonth < 1 && endMonth > 12) return BadRequest(customMessages.MSG_07);
+            if (startMonth > endMonth) return BadRequest(customMessages.MSG_08);
             decimal totalPriceInPeriod = 0;
             var bills = (await _billRepository.GetAllAsync())
                 .Where(b => (b.CreatedDate.Month <= endMonth && b.CreatedDate.Month >= startMonth && b.CreatedDate.Year == year));
@@ -76,7 +77,7 @@ namespace BillApi.Controllers
         [HttpGet("statisticMonth")]
         public async Task<ActionResult<decimal>> GetStatisticMonth([FromQuery] int month, [FromQuery] int year)
         {
-            if (month < 1 && month > 12) return BadRequest();
+            if (month < 1 && month > 12) return BadRequest(customMessages.MSG_09);
             decimal totalPriceInMonth = 0;
             var bills = (await _billRepository.GetAllAsync())
                 .Where(b => b.CreatedDate.Month == month && b.CreatedDate.Year == year);
@@ -89,7 +90,7 @@ namespace BillApi.Controllers
         [HttpGet("statisticQuarter")]
         public async Task<ActionResult<decimal>> GetStatisticQuarter([FromQuery] int quarter, [FromQuery] int year)
         {
-            if (quarter < 1 && quarter > 4) return BadRequest();
+            if (quarter < 1 && quarter > 4) return BadRequest(customMessages.MSG_10);
             var startMonth = 0;
             var endMonth = 0;
             switch (quarter)
@@ -111,7 +112,7 @@ namespace BillApi.Controllers
                     endMonth = 12;
                     break;
                 default:
-                    return BadRequest();
+                    return BadRequest(customMessages.MSG_10);
             }
 
             decimal totalPriceInQuarter = 0;
@@ -143,7 +144,7 @@ namespace BillApi.Controllers
             foreach(var item in  createCartDto.ListProductInBill)
             {
                 if (item.Quantity == 0)
-                    return BadRequest();
+                    return BadRequest(customMessages.MSG_11);
             }
             Bill bill = new Bill
             {
@@ -157,7 +158,7 @@ namespace BillApi.Controllers
                 UpdatedDate = DateTime.UtcNow
             };
             await _billRepository.CreateAsync(bill);
-            return Ok();
+            return Ok(customMessages.MSG_17);
         }
     }
 }

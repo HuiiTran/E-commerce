@@ -5,9 +5,7 @@
         public string MSG_01 = "No matches found";
         public string MSG_02 = "Something went wrong";
 
-        public string MSG_03 = "Admin information update success";
         public string MSG_04 = "Your old password is not correct";
-        public string MSG_05 = "Update password success";
 
         public string MSG_06 = "Your start month is not in correct format";
         public string MSG_07 = "Your end month is not in correct format";
@@ -34,6 +32,6 @@
 
         public string MSG_23 = "Page number must greater than 0";
 
-
+        public string MSG_24 = "This username had been used by other, please change your username";
     }
 }

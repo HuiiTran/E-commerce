@@ -15,4 +15,6 @@
     public record AdminDelet(
         Guid Id
         );
+    public record AdminUpdatePassword(
+        string Password);
 }

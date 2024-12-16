@@ -15,4 +15,6 @@
     public record StaffDelet(
         Guid Id
         );
+    public record StaffUpdatePassword(
+        string Password);
 }

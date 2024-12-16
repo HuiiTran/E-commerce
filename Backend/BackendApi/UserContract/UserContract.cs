@@ -18,4 +18,10 @@
     public record UserDelete(
         Guid Id
         );
+    public record UserUpdatePassword(
+        string newPassword
+        );
+    public record UserUpdateBoughtProduct(
+        List<Guid> listBoughtProduct
+        );
 }

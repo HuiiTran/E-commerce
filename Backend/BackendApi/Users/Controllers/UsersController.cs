@@ -59,6 +59,12 @@ namespace UsersApi.Controllers
             CustomMessages customMessages = new CustomMessages();
             Random random = new Random();
             int randomNumber = random.Next(1000, 9999);
+            var users = (await _userRepository.GetAllAsync())
+                .Where(u => u.UserName == createUserDto.UserName);
+            if(users != null)
+            {
+                return BadRequest(customMessages.MSG_24);
+            }
             var user = new User
             {
                 UserName = createUserDto.UserName,
