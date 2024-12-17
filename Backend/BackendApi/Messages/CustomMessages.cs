@@ -16,7 +16,7 @@
 
         public string MSG_12 = "Quantity must greater than 0";
 
-        public string MSG_13 = "You reviewed this product";
+        public string MSG_13 = "You have reviewed this product";
         public string MSG_14 = "You have not bought any products";
         public string MSG_15 = "You have not bought this product";
 

@@ -7,7 +7,7 @@ namespace ProductApi.Dtos
         Guid id,
         Guid personId,
         List<Product> Products,
-        string personName,
+        string PersonName,
         Decimal total,
         bool isDeleted,
         DateTimeOffset CreatedDate
