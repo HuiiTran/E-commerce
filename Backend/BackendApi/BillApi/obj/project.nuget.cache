@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8nNepTxRcdkJiKiF/y1XoweFNGY6QpaH0NF3bgCDIirOCYNAcqtL2TEmZeQibiouRicP0ZJ7aDeqwata8l+pFg==",
+  "dgSpecHash": "rtJtfOirZNxUvEnWfI4Lp/NGeE7+xGRtPM15VweyFxC+vpQAJWBhnQ7/PICqSZlIKj/OslvyLXaz4F4ycOyoJg==",
   "success": true,
   "projectFilePath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\BillApi\\BillApi.csproj",
   "expectedPackageFiles": [
@@ -46,7 +46,9 @@
     "C:\\Users\\huylo\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\huylo\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\huylo\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
-    "C:\\Users\\huylo\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+    "C:\\Users\\huylo\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512",
+    "C:\\Users\\huylo\\.nuget\\packages\\staffcontract\\1.0.0\\staffcontract.1.0.0.nupkg.sha512",
+    "C:\\Users\\huylo\\.nuget\\packages\\usercontract\\1.0.0\\usercontract.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

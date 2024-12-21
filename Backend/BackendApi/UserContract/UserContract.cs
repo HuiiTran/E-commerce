@@ -13,7 +13,8 @@
         string FullName,
         string UserName,
         string Password,
-        List<Guid> BoughtProducts
+        List<Guid> BoughtProducts,
+        string Role
         );
     public record UserDelete(
         Guid Id
