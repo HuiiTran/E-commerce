@@ -858,6 +858,16 @@
           "lib/net7.0/ZstdSharp.dll": {}
         }
       },
+      "AdminContract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AdminContract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AdminContract.dll": {}
+        }
+      },
       "JWTAuthenManager/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -871,6 +881,26 @@
         },
         "runtime": {
           "bin/placeholder/JWTAuthenManager.dll": {}
+        }
+      },
+      "StaffContract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/StaffContract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StaffContract.dll": {}
+        }
+      },
+      "UserContract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/UserContract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UserContract.dll": {}
         }
       }
     }
@@ -2437,17 +2467,35 @@
         "zstdsharp.port.nuspec"
       ]
     },
+    "AdminContract/1.0.0": {
+      "type": "project",
+      "path": "../AdminContract/AdminContract.csproj",
+      "msbuildProject": "../AdminContract/AdminContract.csproj"
+    },
     "JWTAuthenManager/1.0.0": {
       "type": "project",
       "path": "../JWTAuthenManager/JWTAuthenManager.csproj",
       "msbuildProject": "../JWTAuthenManager/JWTAuthenManager.csproj"
+    },
+    "StaffContract/1.0.0": {
+      "type": "project",
+      "path": "../StaffContract/StaffContract.csproj",
+      "msbuildProject": "../StaffContract/StaffContract.csproj"
+    },
+    "UserContract/1.0.0": {
+      "type": "project",
+      "path": "../UserContract/UserContract.csproj",
+      "msbuildProject": "../UserContract/UserContract.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AdminContract >= 1.0.0",
       "JWTAuthenManager >= 1.0.0",
       "ServicesCommon >= 1.0.0",
-      "Swashbuckle.AspNetCore >= 6.4.0"
+      "StaffContract >= 1.0.0",
+      "Swashbuckle.AspNetCore >= 6.4.0",
+      "UserContract >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2479,8 +2527,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\AdminContract\\AdminContract.csproj": {
+              "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\AdminContract\\AdminContract.csproj"
+            },
             "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\JWTAuthenManager\\JWTAuthenManager.csproj": {
               "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\JWTAuthenManager\\JWTAuthenManager.csproj"
+            },
+            "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\StaffContract\\StaffContract.csproj": {
+              "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\StaffContract\\StaffContract.csproj"
+            },
+            "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\UserContract\\UserContract.csproj": {
+              "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\UserContract\\UserContract.csproj"
             }
           }
         }

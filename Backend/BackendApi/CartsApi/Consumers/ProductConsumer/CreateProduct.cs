@@ -20,7 +20,7 @@ namespace CartsApi.Consumers.ProductConsumer
 
             var product = await _productRepository.GetAsync(message.id);
 
-            if (product == null)
+            if (product != null)
             {
                 return;
             }

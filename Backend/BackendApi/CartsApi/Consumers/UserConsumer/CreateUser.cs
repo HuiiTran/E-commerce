@@ -18,7 +18,7 @@ namespace CartsApi.Consumers.UserConsumer
         {
             var message = consumeContext.Message;
             var user = await _userRepository.GetAsync(message.Id);
-            if (user == null)
+            if (user != null)
             {
                 return;
             }

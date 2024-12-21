@@ -13,7 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AdminContract\AdminContract.csproj" />
     <ProjectReference Include="..\JWTAuthenManager\JWTAuthenManager.csproj" />
+    <ProjectReference Include="..\StaffContract\StaffContract.csproj" />
+    <ProjectReference Include="..\UserContract\UserContract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Consumers\AdminConsumer\" />
+    <Folder Include="Consumers\UserConsumer\" />
   </ItemGroup>
 
 </Project>

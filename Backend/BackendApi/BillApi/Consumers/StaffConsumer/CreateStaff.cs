@@ -20,7 +20,7 @@ namespace BillApi.Consumers.StaffConsumer
 
             var staff = await _staffRepository.GetAsync(message.Id);
 
-            if (staff == null)
+            if (staff != null)
             {
                 return;
             }
