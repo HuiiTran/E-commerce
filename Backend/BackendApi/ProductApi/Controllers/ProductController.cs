@@ -389,5 +389,17 @@ namespace ProductApi.Controllers
             
             return product.AsDto();
         }
+
+
+        [HttpPut("PutDiscount{id}")]
+        public async Task<IActionResult> PutDiscount(Guid id, [FromQuery]int discount)
+        {
+            var product = await _productsRepository.GetAsync(id);
+            if (product == null) return NotFound();
+            product.DiscountPercentage = discount;
+
+            await _productsRepository.UpdateAsync(product);
+            return Ok(product);
+        }
     }
 }

@@ -736,6 +736,16 @@
         "runtime": {
           "bin/placeholder/Messages.dll": {}
         }
+      },
+      "ProductContract/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ProductContract.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ProductContract.dll": {}
+        }
       }
     }
   },
@@ -2129,11 +2139,17 @@
       "type": "project",
       "path": "../Messages/Messages.csproj",
       "msbuildProject": "../Messages/Messages.csproj"
+    },
+    "ProductContract/1.0.0": {
+      "type": "project",
+      "path": "../ProductContract/ProductContract.csproj",
+      "msbuildProject": "../ProductContract/ProductContract.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Messages >= 1.0.0",
+      "ProductContract >= 1.0.0",
       "ServicesCommon >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -2169,6 +2185,9 @@
           "projectReferences": {
             "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\Messages\\Messages.csproj": {
               "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\Messages\\Messages.csproj"
+            },
+            "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\ProductContract\\ProductContract.csproj": {
+              "projectPath": "D:\\LapTrinhDiDong\\Dotnet\\E-commerce\\Backend\\BackendApi\\ProductContract\\ProductContract.csproj"
             }
           }
         }
