@@ -10,6 +10,7 @@ namespace BillApi.Dto
         decimal TotalPrice,
         string PhoneNumber,
         string Address,
+        string Status,
         bool isDeleted,
         DateTimeOffset CreatedDate,
         DateTimeOffset UpdateDate
@@ -22,10 +23,14 @@ namespace BillApi.Dto
         decimal TotalPrice,
         DateTimeOffset CreatedDate
         );
-    public record CreateCartDto(
+    public record CreateBillDto(
         List<ProductInBill> ListProductInBill,
         string PhoneNumber,
         string Address
+        );
+
+    public record UpdateBillDto(
+        string Status
         );
     
 

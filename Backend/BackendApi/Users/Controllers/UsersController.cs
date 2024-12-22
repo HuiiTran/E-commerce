@@ -1,7 +1,9 @@
-﻿using Messages;
+﻿using MassTransit;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using ServicesCommon;
+using UserContract;
 using UsersApi.Dtos;
 using UsersApi.Entities;
 
@@ -12,10 +14,12 @@ namespace UsersApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IRepository<User> _userRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private const int pageSize = 10;
-        public UsersController(IRepository<User> userRepository)
+        public UsersController(IRepository<User> userRepository, IPublishEndpoint publishEndpoint)
         {
             _userRepository = userRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -81,6 +85,13 @@ namespace UsersApi.Controllers
                 LatestUpdatedDate = DateTime.UtcNow,
             };
             await _userRepository.CreateAsync(user);
+
+            await _publishEndpoint.Publish(new UserCreate(  user.Id, 
+                                                            user.FullName, 
+                                                            user.UserName, 
+                                                            user.Password,
+                                                            user.BoughtProducts,
+                                                            user.Role));
             return Ok(customMessages.MSG_17);
         }
         [HttpPut("ConfirmUser")]
@@ -121,11 +132,17 @@ namespace UsersApi.Controllers
             {
                 user.Password = changePasswordDto.newPassword;
                 await _userRepository.UpdateAsync(user);
-
+                await _publishEndpoint.Publish(new UserCreate(user.Id,
+                                                            user.FullName,
+                                                            user.UserName,
+                                                            user.Password,
+                                                            user.BoughtProducts,
+                                                            user.Role));
                 return Ok(customMessages.MSG_18);
             }
             return BadRequest(customMessages.MSG_21);
         }
+        
         [HttpPut("AddMoreBoughtProduct")]
         public async Task<IActionResult> AddMoreBoughtProduct([FromQuery] Guid userId, [FromQuery] Guid productId)
         {
@@ -141,6 +158,12 @@ namespace UsersApi.Controllers
             }
 
             await _userRepository.UpdateAsync(user);
+            await _publishEndpoint.Publish(new UserCreate(user.Id,
+                                                            user.FullName,
+                                                            user.UserName,
+                                                            user.Password,
+                                                            user.BoughtProducts,
+                                                            user.Role));
             return Ok(customMessages.MSG_17);
         }
         [HttpGet("isBoughtProduct")]

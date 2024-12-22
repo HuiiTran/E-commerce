@@ -160,6 +160,37 @@ namespace ProductApi.Controllers
             return NotFound();
         }
 
+        [HttpGet("ByType/ByAscendingPrice")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductTypeAscendingPrice([FromQuery] string productType, [FromQuery] int pageNumber = 1)
+        {
+            if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
+
+            var products = (await _productsRepository.GetAllAsync())
+                .Where(p => p.ProductType.Contains(productType) && p.isDeleted == false)
+                .OrderBy(p => p.ProductPrice)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
+            if (products != null) return Ok(products);
+
+            return NotFound();
+        }
+        [HttpGet("ByType/ByDescendingPrice")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> FilterByProductTypeDescendingPrice([FromQuery] string productType, [FromQuery] int pageNumber = 1)
+        {
+            if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
+
+            var products = (await _productsRepository.GetAllAsync())
+                .Where(p => p.ProductType.Contains(productType) && p.isDeleted == false)
+                .OrderByDescending(p => p.ProductPrice)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(product => product.AsDto());
+            if (products != null) return Ok(products);
+
+            return NotFound();
+        }
+
         /// <summary>
         /// Get all product in price ascending order 
         /// </summary>

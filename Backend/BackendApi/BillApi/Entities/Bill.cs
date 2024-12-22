@@ -15,7 +15,8 @@ namespace BillApi.Entities
         public string PhoneNumber { get; set; }
 
         public string Address { get; set; }
-        //
+
+        public string Status { get; set; } 
         public bool isDeleted { get; set; } = false;
 
         public DateTimeOffset CreatedDate { get; set; }

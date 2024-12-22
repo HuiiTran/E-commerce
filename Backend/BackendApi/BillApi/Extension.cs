@@ -18,6 +18,7 @@ namespace BillApi
                 bill.TotalPrice,
                 bill.PhoneNumber,
                 bill.Address,
+                bill.Status,
                 bill.isDeleted,
                 bill.CreatedDate,
                 bill.UpdatedDate

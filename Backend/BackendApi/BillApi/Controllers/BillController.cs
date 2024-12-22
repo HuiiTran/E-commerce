@@ -125,10 +125,10 @@ namespace BillApi.Controllers
             return Ok(totalPriceInQuarter);
         }
         [HttpPost]
-        public async Task<ActionResult<BillDto>> PostAsync([FromQuery] Guid OwnerId, CreateCartDto createCartDto)
+        public async Task<ActionResult<BillDto>> PostAsync([FromQuery] Guid OwnerId, CreateBillDto createBillDto)
         {
             decimal totalPrice = 0;
-            foreach(var product in createCartDto.ListProductInBill)
+            foreach(var product in createBillDto.ListProductInBill)
             {
                 var itemInfor = await _productRepository.GetAsync(product.ProductId);
                 totalPrice += itemInfor.ProductPrice;
@@ -141,7 +141,7 @@ namespace BillApi.Controllers
                 ownerName = await _staffRepository.GetAsync(OwnerId)
                     .Select(staff => staff.Name);
             }
-            foreach(var item in  createCartDto.ListProductInBill)
+            foreach(var item in  createBillDto.ListProductInBill)
             {
                 if (item.Quantity == 0)
                     return BadRequest(customMessages.MSG_11);
@@ -149,16 +149,33 @@ namespace BillApi.Controllers
             Bill bill = new Bill
             {
                 OwnerCreatedId = OwnerId,
-                ListProductInBill = createCartDto.ListProductInBill,
+                ListProductInBill = createBillDto.ListProductInBill,
                 TotalPrice = totalPrice,
-                PhoneNumber = createCartDto.PhoneNumber,
-                Address = createCartDto.Address,
+                PhoneNumber = createBillDto.PhoneNumber,
+                Address = createBillDto.Address,
+                Status = "Pending",
                 isDeleted = false,
                 CreatedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow
             };
             await _billRepository.CreateAsync(bill);
             return Ok(customMessages.MSG_17);
+        }
+        [HttpPut("updateStatus{id}")]
+        public async Task<IActionResult> UdpateStatus(Guid id, UpdateBillDto updateBillDto) 
+        {
+            var existingBill = await _billRepository.GetAsync(id);
+
+            if (existingBill == null)
+            {
+                return NotFound(customMessages.MSG_01);
+            }
+            existingBill.Status = updateBillDto.Status;
+            existingBill.UpdatedDate = DateTime.UtcNow;
+
+            await _billRepository.UpdateAsync(existingBill);
+
+            return Ok(customMessages.MSG_18);
         }
     }
 }
