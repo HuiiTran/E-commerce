@@ -50,3 +50,9 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\obj\Debug\net8.0
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\obj\Debug\net8.0\CartsApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\obj\Debug\net8.0\CartsApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\obj\Debug\net8.0\ref\CartsApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\UserContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\ProductContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\CartsApi\bin\Debug\net8.0\UserContract.pdb

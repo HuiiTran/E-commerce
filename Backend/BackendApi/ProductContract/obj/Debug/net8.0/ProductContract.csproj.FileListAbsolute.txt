@@ -1,0 +1,12 @@
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\bin\Debug\net8.0\ProductContract.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\bin\Debug\net8.0\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\bin\Debug\net8.0\ProductContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\refint\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ProductContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductContract\obj\Debug\net8.0\ref\ProductContract.dll

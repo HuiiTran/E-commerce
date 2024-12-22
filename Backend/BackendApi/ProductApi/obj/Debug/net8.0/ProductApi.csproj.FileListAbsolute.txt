@@ -52,3 +52,5 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\obj\Debug\net8
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\obj\Debug\net8.0\ref\ProductApi.dll
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\bin\Debug\net8.0\Messages.dll
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\bin\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\bin\Debug\net8.0\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ProductApi\bin\Debug\net8.0\ProductContract.pdb

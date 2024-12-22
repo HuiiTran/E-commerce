@@ -50,3 +50,5 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\obj\Debug\net8.
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\obj\Debug\net8.0\AdminsApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\obj\Debug\net8.0\AdminsApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\obj\Debug\net8.0\ref\AdminsApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\Messages.pdb

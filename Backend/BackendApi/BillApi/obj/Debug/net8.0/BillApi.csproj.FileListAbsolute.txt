@@ -50,3 +50,11 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\obj\Debug\net8.0\
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\obj\Debug\net8.0\BillApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\obj\Debug\net8.0\BillApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\obj\Debug\net8.0\ref\BillApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\ProductContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\StaffContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\UserContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\ProductContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\StaffContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\BillApi\bin\Debug\net8.0\UserContract.pdb

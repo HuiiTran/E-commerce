@@ -9,6 +9,7 @@
       "ProductApi/1.0.0": {
         "dependencies": {
           "Messages": "1.0.0",
+          "ProductContract": "1.0.0",
           "ServicesCommon": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
@@ -344,6 +345,11 @@
         "runtime": {
           "Messages.dll": {}
         }
+      },
+      "ProductContract/1.0.0": {
+        "runtime": {
+          "ProductContract.dll": {}
+        }
       }
     }
   },
@@ -655,6 +661,11 @@
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
     },
     "Messages/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProductContract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

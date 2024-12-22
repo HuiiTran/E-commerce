@@ -1,7 +1,9 @@
-﻿using Messages;
+﻿using MassTransit;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Dtos;
 using ProductApi.Entities;
+using ProductContract;
 using ServicesCommon;
 
 namespace ProductApi.Controllers
@@ -11,12 +13,14 @@ namespace ProductApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IRepository<Product> _productsRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private const int pageSize = 10;
         private CustomMessages customMessages = new CustomMessages();
 
-        public ProductController(IRepository<Product> productsRepository)
+        public ProductController(IRepository<Product> productsRepository, IPublishEndpoint publishEndpoint)
         {
             _productsRepository = productsRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         /// <summary>
@@ -259,6 +263,13 @@ namespace ProductApi.Controllers
             product.ProductImages = tempImage;
 
             await _productsRepository.CreateAsync(product);
+
+            await _publishEndpoint.Publish(new ProductCreate(product.Id, 
+                                                             product.ProductName, 
+                                                             product.ProductPrice, 
+                                                             product.DiscountPercentage, 
+                                                             product.ProductQuantity, 
+                                                             product.ProductImages[0]));
             return Ok(customMessages.MSG_17);
         }
 
@@ -308,6 +319,14 @@ namespace ProductApi.Controllers
             }
             await _productsRepository.UpdateAsync(existingProduct);
 
+            await _publishEndpoint.Publish(new ProductUpdate(existingProduct.Id, 
+                                                             existingProduct.ProductName, 
+                                                             existingProduct.ProductPrice, 
+                                                             existingProduct.DiscountPercentage, 
+                                                             existingProduct.ProductQuantity, 
+                                                             existingProduct.ProductImages[0]));
+
+
             return Ok(customMessages.MSG_18);
         }
         [HttpPut("ProductQuantity{id}")]
@@ -318,6 +337,12 @@ namespace ProductApi.Controllers
             product.ProductQuantity -= soldQuantity;
             product.ProductSoldQuantity += soldQuantity;
             await _productsRepository.UpdateAsync(product);
+            await _publishEndpoint.Publish(new ProductUpdate(product.Id,
+                                                             product.ProductName,
+                                                             product.ProductPrice,
+                                                             product.DiscountPercentage,
+                                                             product.ProductQuantity,
+                                                             product.ProductImages[0]));
 
             return Ok(customMessages.MSG_18);
 
@@ -399,6 +424,12 @@ namespace ProductApi.Controllers
             product.DiscountPercentage = discount;
 
             await _productsRepository.UpdateAsync(product);
+            await _publishEndpoint.Publish(new ProductCreate(product.Id,
+                                                             product.ProductName,
+                                                             product.ProductPrice,
+                                                             product.DiscountPercentage,
+                                                             product.ProductQuantity,
+                                                             product.ProductImages[0]));
             return Ok(product);
         }
     }

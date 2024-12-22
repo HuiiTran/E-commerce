@@ -1,0 +1,12 @@
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\bin\Debug\net8.0\StaffContract.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\bin\Debug\net8.0\StaffContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\bin\Debug\net8.0\StaffContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\refint\StaffContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\StaffContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffContract\obj\Debug\net8.0\ref\StaffContract.dll

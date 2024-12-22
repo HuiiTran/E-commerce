@@ -8,8 +8,12 @@
     ".NETCoreApp,Version=v8.0": {
       "BillApi/1.0.0": {
         "dependencies": {
+          "Messages": "1.0.0",
+          "ProductContract": "1.0.0",
           "ServicesCommon": "1.0.0",
-          "Swashbuckle.AspNetCore": "6.4.0"
+          "StaffContract": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.4.0",
+          "UserContract": "1.0.0"
         },
         "runtime": {
           "BillApi.dll": {}
@@ -338,6 +342,26 @@
             "fileVersion": "0.7.3.0"
           }
         }
+      },
+      "Messages/1.0.0": {
+        "runtime": {
+          "Messages.dll": {}
+        }
+      },
+      "ProductContract/1.0.0": {
+        "runtime": {
+          "ProductContract.dll": {}
+        }
+      },
+      "StaffContract/1.0.0": {
+        "runtime": {
+          "StaffContract.dll": {}
+        }
+      },
+      "UserContract/1.0.0": {
+        "runtime": {
+          "UserContract.dll": {}
+        }
       }
     }
   },
@@ -647,6 +671,26 @@
       "sha512": "sha512-U9Ix4l4cl58Kzz1rJzj5hoVTjmbx1qGMwzAcbv1j/d3NzrFaESIurQyg+ow4mivCgkE3S413y+U9k4WdnEIkRA==",
       "path": "zstdsharp.port/0.7.3",
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
+    },
+    "Messages/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProductContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StaffContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

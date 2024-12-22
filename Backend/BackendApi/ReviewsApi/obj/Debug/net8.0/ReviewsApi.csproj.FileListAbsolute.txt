@@ -50,3 +50,7 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\obj\Debug\net8
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\obj\Debug\net8.0\ReviewsApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\obj\Debug\net8.0\ReviewsApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\obj\Debug\net8.0\ref\ReviewsApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\bin\Debug\net8.0\Messages.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\bin\Debug\net8.0\UserContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\bin\Debug\net8.0\Messages.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\ReviewsApi\bin\Debug\net8.0\UserContract.pdb
