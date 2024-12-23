@@ -48,7 +48,21 @@ namespace CartsApi.Controllers
             return Ok(carts);
         }
 
+        [HttpGet("itemQuantity")]
+        public async Task<ActionResult<int>> GetItemQuantity([FromQuery]Guid cartId, [FromQuery]Guid itemId)
+        {
+            var cart = (await _cartRepository.GetAsync(cartId));
 
+            if (cart == null) return NotFound(customMessages.MSG_01);
+            foreach( var item in cart.ListProductInCart.ToList())
+            {
+                if(item.ProductId == itemId)
+                {
+                    return Ok(item.Quantity);
+                }
+            }
+            return BadRequest(customMessages.MSG_02);
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<CartInformationDto>> GetByCartIdAsync(Guid id)
         {
@@ -69,7 +83,7 @@ namespace CartsApi.Controllers
                     continue;
                 }
                 CartProducts.Add(product);
-                totalPrice += product.ProductPrice - (product.ProductPrice * product.DiscountPrecentage)/ 100;
+                totalPrice = totalPrice +  cartProduct.Quantity * (product.ProductPrice - (product.ProductPrice * product.DiscountPrecentage)/ 100) ;
             }
 
             return cart.CartInformationAsDto(CartProducts, user.userName, totalPrice);
@@ -115,7 +129,7 @@ namespace CartsApi.Controllers
                 .FirstOrDefault();
             if (existingCart != null)
             {
-                foreach (var existingProduct in existingCart.ListProductInCart)
+                foreach (var existingProduct in existingCart.ListProductInCart.ToList())
                 {
                     foreach (var newProduct in createCartDto.ListProductInCart)
                     {
@@ -131,7 +145,7 @@ namespace CartsApi.Controllers
                     }
                 }
                 await _cartRepository.UpdateAsync(existingCart);
-                return Ok(customMessages.MSG_18);
+                return Ok(customMessages.MSG_17);
             }
             var cart = new Cart
             {
@@ -179,22 +193,33 @@ namespace CartsApi.Controllers
             }
             if (existingCart != null)
             {
-                foreach(var item in existingCart.ListProductInCart)
+                var list = existingCart.ListProductInCart;
+                foreach (var item in list)
                 {
                     if(item.ProductId == productInCart.ProductId)
                     {
-                        if (productInCart.Quantity == 0)
-                        {
-                            existingCart.ListProductInCart.Remove(item);
-                            break;
-                        }
                         item.Quantity = productInCart.Quantity;
-                    }
-                    else
-                    {
-                        existingCart.ListProductInCart.Add(productInCart);
+                        break;
                     }
                 }
+                int count = 0;
+                foreach (var item in list)
+                {
+                    if(item.ProductId != productInCart.ProductId)
+                        count++;
+                }
+                if(count == list.Count())
+                {
+                    list.Add(productInCart);
+                }
+
+                foreach (var item in list.ToList())
+                {
+                    if(item.Quantity == 0)
+                        list.Remove(item);
+                }
+                existingCart.ListProductInCart = list;
+                
                 await _cartRepository.UpdateAsync(existingCart);
                 return Ok(customMessages.MSG_18);
             }
