@@ -150,7 +150,7 @@ namespace ProductApi.Controllers
             if (pageNumber < 1 || pageSize < 1) return BadRequest(customMessages.MSG_23);
 
             var products = (await _productsRepository.GetAllAsync())
-                .Where(p => p.ProductType.Contains(productType) && p.isDeleted == false)
+                .Where(p => p.ProductType == productType && p.isDeleted == false)
                 .OrderByDescending(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -377,6 +377,25 @@ namespace ProductApi.Controllers
 
             return Ok(customMessages.MSG_18);
 
+        }
+        [HttpPut("AddImage{id}")]
+        public async Task<IActionResult> AddImage(Guid id,[FromForm] AddMorePicture addMorePicture)
+        {
+            var product = await _productsRepository.GetAsync(id);
+
+            if (product == null) { return NotFound(customMessages.MSG_01); }
+            if (product.ProductImages == null) product.ProductImages = new List<String>();
+            foreach (var image in addMorePicture.ProductImages)
+            {
+                if (image != null)
+                {
+                    MemoryStream memoryStream = new MemoryStream();
+                    image.OpenReadStream().CopyTo(memoryStream);
+                    product.ProductImages.Add(Convert.ToBase64String(memoryStream.ToArray()));
+                }
+            }
+            await _productsRepository.UpdateAsync(product);
+            return Ok(customMessages.MSG_18);
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync(Guid id)

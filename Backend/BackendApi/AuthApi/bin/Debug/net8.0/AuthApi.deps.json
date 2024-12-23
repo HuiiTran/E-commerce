@@ -8,9 +8,12 @@
     ".NETCoreApp,Version=v8.0": {
       "AuthApi/1.0.0": {
         "dependencies": {
+          "AdminContract": "1.0.0",
           "JWTAuthenManager": "1.0.0",
           "ServicesCommon": "1.0.0",
-          "Swashbuckle.AspNetCore": "6.4.0"
+          "StaffContract": "1.0.0",
+          "Swashbuckle.AspNetCore": "6.4.0",
+          "UserContract": "1.0.0"
         },
         "runtime": {
           "AuthApi.dll": {}
@@ -435,6 +438,11 @@
           }
         }
       },
+      "AdminContract/1.0.0": {
+        "runtime": {
+          "AdminContract.dll": {}
+        }
+      },
       "JWTAuthenManager/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.5",
@@ -443,6 +451,16 @@
         },
         "runtime": {
           "JWTAuthenManager.dll": {}
+        }
+      },
+      "StaffContract/1.0.0": {
+        "runtime": {
+          "StaffContract.dll": {}
+        }
+      },
+      "UserContract/1.0.0": {
+        "runtime": {
+          "UserContract.dll": {}
         }
       }
     }
@@ -810,7 +828,22 @@
       "path": "zstdsharp.port/0.7.3",
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
     },
+    "AdminContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "JWTAuthenManager/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StaffContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserContract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

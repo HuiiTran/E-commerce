@@ -52,3 +52,5 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\obj\Debug\net8.0\re
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\obj\Debug\net8.0\UsersApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\obj\Debug\net8.0\UsersApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\obj\Debug\net8.0\ref\UsersApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\bin\Debug\net8.0\UserContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\Users\bin\Debug\net8.0\UserContract.pdb

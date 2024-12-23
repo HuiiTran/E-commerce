@@ -64,7 +64,8 @@ namespace UsersApi.Controllers
             Random random = new Random();
             int randomNumber = random.Next(1000, 9999);
             var users = (await _userRepository.GetAllAsync())
-                .Where(u => u.UserName == createUserDto.UserName);
+                .Where(u => u.UserName == createUserDto.UserName)
+                .FirstOrDefault();
             if(users != null)
             {
                 return BadRequest(customMessages.MSG_24);
@@ -182,5 +183,18 @@ namespace UsersApi.Controllers
             return Ok();
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            CustomMessages customMessages = new CustomMessages();
+            var user = await _userRepository.GetAsync(id);
+            if(user == null) return NotFound(customMessages.MSG_01);
+
+            user.isDeleted = true;
+            user.LatestUpdatedDate = DateTime.UtcNow;
+            await _userRepository.UpdateAsync(user);
+            return Ok(customMessages.MSG_19);
+        }
+        
     }
 }

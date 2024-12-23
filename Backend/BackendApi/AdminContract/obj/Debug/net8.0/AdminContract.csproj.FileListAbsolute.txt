@@ -1,0 +1,12 @@
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\bin\Debug\net8.0\AdminContract.deps.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\bin\Debug\net8.0\AdminContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\bin\Debug\net8.0\AdminContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.GeneratedMSBuildEditorConfig.editorconfig
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.AssemblyInfoInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.AssemblyInfo.cs
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.csproj.CoreCompileInputs.cache
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.sourcelink.json
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\refint\AdminContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\AdminContract.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminContract\obj\Debug\net8.0\ref\AdminContract.dll

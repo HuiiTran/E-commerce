@@ -17,5 +17,10 @@ namespace ReviewsApi
                 review.isDeleted
                 );
         }
+
+        public static ReviewRateDto ReviewRateAsDto(float reviewRate)
+        {
+            return new ReviewRateDto(reviewRate);
+        }
     }
 }

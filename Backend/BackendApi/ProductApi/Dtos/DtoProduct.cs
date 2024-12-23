@@ -67,4 +67,8 @@ namespace ProductApi.Dtos
         int DiscountPercentage
         );
 
+    public record AddMorePicture(
+        List<IFormFile> ProductImages
+        );
+
 }

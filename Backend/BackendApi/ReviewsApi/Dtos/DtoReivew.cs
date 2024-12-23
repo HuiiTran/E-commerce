@@ -22,4 +22,6 @@
         int Rated,
         bool isDeleted
         );
+    public record ReviewRateDto(
+        float reviewRate);
 }

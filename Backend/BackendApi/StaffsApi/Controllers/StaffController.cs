@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
+using StaffContract;
 using StaffsApi.Dtos;
 using StaffsApi.Entities;
 using static System.Net.Mime.MediaTypeNames;
@@ -11,10 +13,12 @@ namespace StaffsApi.Controllers
     public class StaffController : ControllerBase
     {
         private readonly IRepository<Staff> _staffRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private const int pageSize = 10;
-        public StaffController(IRepository<Staff> staffRepository)
+        public StaffController(IRepository<Staff> staffRepository, IPublishEndpoint publishEndpoint)
         {
             _staffRepository = staffRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
 
@@ -76,7 +80,9 @@ namespace StaffsApi.Controllers
                 Password = createStaffDto.Password,
                 Email = createStaffDto.Email,
                 Name = createStaffDto.Name,
-                PhoneNumber = createStaffDto.Phone
+                PhoneNumber = createStaffDto.Phone,
+                CreatedDate = DateTime.UtcNow,
+                LatestUpdatedDate = DateTime.UtcNow,
             };
             if(createStaffDto.Image == null)
             {
@@ -90,6 +96,8 @@ namespace StaffsApi.Controllers
             }
 
             await _staffRepository.CreateAsync(staff);
+
+            await _publishEndpoint.Publish(new StaffCreate(staff.Id, staff.UserName, staff.Password, staff.Role));
 
             return Ok(staff);
         }
@@ -106,6 +114,7 @@ namespace StaffsApi.Controllers
             existingStaff.Name = updateStaffDto.Name;
             existingStaff.PhoneNumber = updateStaffDto.Phone;
             existingStaff.isDeleted = updateStaffDto.isDeleted;
+            existingStaff.LatestUpdatedDate = DateTime.UtcNow;
 
             if(updateStaffDto.Image != null )
             {
@@ -118,6 +127,9 @@ namespace StaffsApi.Controllers
                 existingStaff.Image = existingImage;
             }
             await _staffRepository.UpdateAsync(existingStaff);
+
+            await _publishEndpoint.Publish(new StaffUpdate(existingStaff.Id, existingStaff.UserName, existingStaff.Password, existingStaff.Role));
+
 
             return Ok();
         }
@@ -133,6 +145,9 @@ namespace StaffsApi.Controllers
             staff.Password = newPassword;
 
             await _staffRepository.UpdateAsync(staff);
+
+            await _publishEndpoint.Publish(new StaffUpdate(staff.Id, staff.UserName, staff.Password, staff.Role));
+
 
             return Ok();
         }

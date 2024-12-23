@@ -10,7 +10,8 @@
         "dependencies": {
           "Messages": "1.0.0",
           "ServicesCommon": "1.0.0",
-          "Swashbuckle.AspNetCore": "6.4.0"
+          "Swashbuckle.AspNetCore": "6.4.0",
+          "UserContract": "1.0.0"
         },
         "runtime": {
           "UsersApi.dll": {}
@@ -344,6 +345,11 @@
         "runtime": {
           "Messages.dll": {}
         }
+      },
+      "UserContract/1.0.0": {
+        "runtime": {
+          "UserContract.dll": {}
+        }
       }
     }
   },
@@ -655,6 +661,11 @@
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
     },
     "Messages/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserContract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -46,22 +46,31 @@ namespace ReviewsApi.Controllers
             return Ok(reviews);
         }
         [HttpGet("averageReview={id}")]
-        public async Task<ActionResult<float>> GetAverageReview(Guid id)
+        public async Task<ActionResult<ReviewRateDto>> GetAverageReview(Guid id)
         {
+            
             float averageReview = 0;
             float totalScore = 0;
             var reviews = (await _reviewRepository.GetAllAsync())
                 .Where (review => review.ProductId == id && review.isDeleted == false)
                 .Select (review => review.Rated);
-/*            var reviewNumber = (await _reviewRepository.GetAllAsync())
-                .Where(review => review.ProductId == id)
-                .Count();*/
+            /*            var reviewNumber = (await _reviewRepository.GetAllAsync())
+                            .Where(review => review.ProductId == id)
+                            .Count();*/
+            if (reviews.Count() == 0)
+            {
+                ReviewRateDto reviewRateDtonull = new ReviewRateDto(0);
+                return reviewRateDtonull;
+            }
+                
             foreach (var review in reviews)
             {
                 totalScore += review;
             }
             averageReview = totalScore / reviews.Count();
-            return Ok(averageReview); 
+
+            ReviewRateDto reviewRateDto = new ReviewRateDto(averageReview);
+            return reviewRateDto; 
         }
 
         [HttpPost]

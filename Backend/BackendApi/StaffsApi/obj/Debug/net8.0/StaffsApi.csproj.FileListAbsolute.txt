@@ -50,3 +50,5 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\obj\Debug\net8.
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\obj\Debug\net8.0\StaffsApi.pdb
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\obj\Debug\net8.0\StaffsApi.genruntimeconfig.cache
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\obj\Debug\net8.0\ref\StaffsApi.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\bin\Debug\net8.0\StaffContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\StaffsApi\bin\Debug\net8.0\StaffContract.pdb
