@@ -131,7 +131,7 @@ namespace BillApi.Controllers
             foreach(var product in createBillDto.ListProductInBill)
             {
                 var itemInfor = await _productRepository.GetAsync(product.ProductId);
-                totalPrice += itemInfor.ProductPrice;
+                totalPrice += itemInfor.ProductPrice * product.Quantity;
             }
 
             string ownerName = await _userRepository.GetAsync(OwnerId)

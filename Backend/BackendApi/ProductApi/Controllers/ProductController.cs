@@ -472,9 +472,10 @@ namespace ProductApi.Controllers
             var product = await _productsRepository.GetAsync(id);
             if (product == null) return NotFound();
             product.DiscountPercentage = discount;
+            product.LatestUpdatedDate = DateTime.UtcNow;
 
             await _productsRepository.UpdateAsync(product);
-            await _publishEndpoint.Publish(new ProductCreate(product.Id,
+            await _publishEndpoint.Publish(new ProductUpdate(product.Id,
                                                              product.ProductName,
                                                              product.ProductPrice,
                                                              product.DiscountPercentage,

@@ -1,4 +1,5 @@
 using AuthApi.Entities;
+using JWTAuthenManager;
 using ServicesCommon.MassTransit;
 using ServicesCommon.MongoDB;
 
@@ -22,6 +23,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddMongo()
     .AddMongoRepository<AllUser>("AllUser")
     .AddMassTransitWithRabbitMq();
+
+builder.Services.AddControllers();
+builder.Services.AddSingleton<JWTTokenHandler>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

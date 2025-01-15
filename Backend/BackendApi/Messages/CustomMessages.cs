@@ -33,5 +33,16 @@
         public string MSG_23 = "Page number must greater than 0";
 
         public string MSG_24 = "This username had been used by other, please change your username";
+
+        public string MSG_25 = "UserName or Password is incorrect";
+
+        public string MSG_26 = "Please enter a valid keyword for search";
+
+        public string MSG_27 = "Are you sure you want to delete this ?";
+        public string MSG_28 = "Invalid input";
+        public string MSG_29 = "This is already exists";
+        public string MSG_30 = "Please, choose a row";
+
+
     }
 }
