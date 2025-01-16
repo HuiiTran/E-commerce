@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Messages;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Dtos;
 using ProductApi.Entities;
@@ -10,6 +11,7 @@ namespace ProductApi.Controllers
 {
     [ApiController]
     [Route("Product")]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly IRepository<Product> _productsRepository;

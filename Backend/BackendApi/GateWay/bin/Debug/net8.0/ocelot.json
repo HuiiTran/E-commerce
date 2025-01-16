@@ -1,0 +1,33 @@
+{
+  "Routes": [
+    //Authen
+    {
+      "DownstreamPathTemplate": "/Authen",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7055
+        }
+      ],
+      "UpstreamPathTemplate": "/Authen",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    //product
+    {
+      "DownstreamPathTemplate": "/Product{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/Product{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7273"
+  }
+}
