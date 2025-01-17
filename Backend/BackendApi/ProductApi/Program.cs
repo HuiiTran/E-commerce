@@ -36,6 +36,7 @@ builder.Services.AddMongo()
     .AddMongoRepository<ProductRefeshRate>("ProductRefeshRate")
     .AddMongoRepository<ProductSpecialFeature>("ProductSpecialFeature")
     .AddMongoRepository<ImportProductBill>("ImportProductBill")
+    .AddMongoRepository<User>("User")
     .AddMassTransitWithRabbitMq();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

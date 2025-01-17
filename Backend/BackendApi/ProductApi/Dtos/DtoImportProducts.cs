@@ -18,6 +18,7 @@ namespace ProductApi.Dtos
         DateTimeOffset CreatedDate
         );
     public record CreateImportProductBillsDto(
+        Guid personId,
         List<ImportProduct> ImportProducts
         );
 }

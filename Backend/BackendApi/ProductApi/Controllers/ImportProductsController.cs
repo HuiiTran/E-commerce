@@ -1,7 +1,9 @@
-﻿using MassTransit.Initializers;
+﻿using MassTransit;
+using MassTransit.Initializers;
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Dtos;
 using ProductApi.Entities;
+using ProductContract;
 using ServicesCommon;
 using System.ComponentModel;
 
@@ -14,11 +16,13 @@ namespace ProductApi.Controllers
         private readonly IRepository<ImportProductBill> _productsBillRepository;
         private readonly IRepository<Product> _productsRepository;
         private readonly IRepository<User> _userRepository;
-        public ImportProductsController(IRepository<ImportProductBill> billRepository, IRepository<Product> productRepository, IRepository<User> userRepository)
+        private readonly IPublishEndpoint _publishEndpoint;
+        public ImportProductsController(IRepository<ImportProductBill> billRepository, IRepository<Product> productRepository, IRepository<User> userRepository, IPublishEndpoint publishEndpoint)
         {
             _productsBillRepository = billRepository;
             _productsRepository = productRepository;
             _userRepository = userRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
 
@@ -133,15 +137,30 @@ namespace ProductApi.Controllers
             decimal totalPrice = 0;
             foreach(var product in createImportProductBillsDto.ImportProducts)
             {
+                var exsitingProduct = await _productsRepository.GetAsync(product.ProductId);
+                if(exsitingProduct == null)
+                {
+                    return NotFound();
+                }
+                exsitingProduct.ProductQuantity += product.Quantity;
+                await _productsRepository.UpdateAsync(exsitingProduct);
+                await _publishEndpoint.Publish(new ProductUpdate(exsitingProduct.Id,
+                                                             exsitingProduct.ProductName,
+                                                             exsitingProduct.ProductPrice,
+                                                             exsitingProduct.DiscountPercentage,
+                                                             exsitingProduct.ProductQuantity,
+                                                             exsitingProduct.ProductImages[0]));
                 totalPrice += product.Price;
             }
             ImportProductBill importProductBill = new ImportProductBill
             {
                 ListImportProducts = createImportProductBillsDto.ImportProducts.ToList(),
+                PersonId = createImportProductBillsDto.personId,
                 Total = totalPrice,
                 CreatedDate = DateTime.UtcNow,
             };
 
+            
             await _productsBillRepository.CreateAsync(importProductBill);
             return Ok();
         }

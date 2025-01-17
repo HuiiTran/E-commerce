@@ -1,12 +1,13 @@
 using ReviewsApi.Entities;
 using ServicesCommon.MassTransit;
 using ServicesCommon.MongoDB;
-
+using JWTAuthenManager;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCustomJwtAuthentication();
 
 builder.Services.AddCors(options =>
 {
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

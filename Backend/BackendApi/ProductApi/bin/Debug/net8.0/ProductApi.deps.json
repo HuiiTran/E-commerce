@@ -12,6 +12,7 @@
           "Messages": "1.0.0",
           "ProductContract": "1.0.0",
           "ServicesCommon": "1.0.0",
+          "StaffContract": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
@@ -456,6 +457,11 @@
         "runtime": {
           "ProductContract.dll": {}
         }
+      },
+      "StaffContract/1.0.0": {
+        "runtime": {
+          "StaffContract.dll": {}
+        }
       }
     }
   },
@@ -833,6 +839,11 @@
       "sha512": ""
     },
     "ProductContract/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StaffContract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
