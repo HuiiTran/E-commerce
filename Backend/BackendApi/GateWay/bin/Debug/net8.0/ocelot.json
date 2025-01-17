@@ -24,8 +24,205 @@
         }
       ],
       "UpstreamPathTemplate": "/Product{everything}",
-      "UpstreamHttpMethod": [ "Post", "Get", "Put" ]
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //import product
+    {
+      "DownstreamPathTemplate": "/ImportProductsBill{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ImportProductsBill{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product battery
+    {
+      "DownstreamPathTemplate": "/ProductBatteryCapacity{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductBatteryCapacity{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product Brand
+    {
+      "DownstreamPathTemplate": "/ProductBrand{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductBrand{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product Connectivity
+    {
+      "DownstreamPathTemplate": "/ProductConnectivity{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductConnectivity{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductNetworkType
+    {
+      "DownstreamPathTemplate": "/ProductNetworkType{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductNetworkType{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductOperatingSystem
+    {
+      "DownstreamPathTemplate": "/ProductOperatingSystem{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductOperatingSystem{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductRam
+    {
+      "DownstreamPathTemplate": "/ProductRam{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductRam{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductRefeshRate
+    {
+      "DownstreamPathTemplate": "/ProductRefeshRate{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductRefeshRate{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductResolution
+    {
+      "DownstreamPathTemplate": "/ProductResolution{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductResolution{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductSpecialFeature
+    {
+      "DownstreamPathTemplate": "/ProductSpecialFeature{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductSpecialFeature{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductStorage
+    {
+      "DownstreamPathTemplate": "/ProductStorage{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductStorage{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Product ProductType
+    {
+      "DownstreamPathTemplate": "/ProductType{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7143
+        }
+      ],
+      "UpstreamPathTemplate": "/ProductType{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+
+    //Cart
+    {
+      "DownstreamPathTemplate": "/Cart{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7281
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Bill
+    {
+      "DownstreamPathTemplate": "/Bill{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7173
+        }
+      ],
+      "UpstreamPathTemplate": "/Bill{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
+    },
+    //Review
+    {
+      "DownstreamPathTemplate": "/Review{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7155
+        }
+      ],
+      "UpstreamPathTemplate": "/Review{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ]
     }
+
   ],
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:7273"
