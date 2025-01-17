@@ -1,8 +1,10 @@
 ﻿using AdminsApi.Dtos;
 using AdminsApi.Entities;
+using MassTransit;
 using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
+using AdminContract;
 
 namespace AdminsApi.Controllers
 {
@@ -11,11 +13,13 @@ namespace AdminsApi.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IRepository<Admin> _adminRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private CustomMessages customMessages = new CustomMessages();
 
-        public AdminController(IRepository<Admin> adminRepository)
+        public AdminController(IRepository<Admin> adminRepository, IPublishEndpoint publishEndpoint)
         {
             _adminRepository = adminRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -54,6 +58,7 @@ namespace AdminsApi.Controllers
 
             };
             await _adminRepository.CreateAsync(admin);
+            await _publishEndpoint.Publish(new AdminCreate(admin.Id, admin.UserName, admin.Password, admin.Role));
             return Ok(customMessages.MSG_17);
         }
         [HttpPut("{id}")]
@@ -70,6 +75,9 @@ namespace AdminsApi.Controllers
             existingAdmin.LatestUpdatedDate = DateTime.UtcNow;
 
             await _adminRepository.UpdateAsync(existingAdmin);
+
+            await _publishEndpoint.Publish(new AdminUpdate(existingAdmin.Id, existingAdmin.UserName, existingAdmin.Password, existingAdmin.Role));
+
             return Ok(customMessages.MSG_18);
         }
 

@@ -24,6 +24,7 @@ namespace ProductContract
         Guid id);
 
     public record UpdateQuantity(
+        Guid id,
         int quantity
         );
 }

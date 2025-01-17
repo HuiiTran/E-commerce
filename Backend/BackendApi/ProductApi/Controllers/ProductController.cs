@@ -29,6 +29,7 @@ namespace ProductApi.Controllers
         /// Get all product
         /// </summary>
         /// <returns></returns>
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAsync([FromQuery] int pageNumber = 1)
         {

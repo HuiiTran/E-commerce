@@ -1,9 +1,11 @@
 ﻿using BillApi.Dto;
 using BillApi.Entities;
+using MassTransit;
 using MassTransit.Initializers;
 using Messages;
 using Microsoft.AspNetCore.Mvc;
 using ServicesCommon;
+using ProductContract;
 
 namespace BillApi.Controllers
 {
@@ -15,13 +17,15 @@ namespace BillApi.Controllers
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Staff> _staffRepository;
         private readonly IRepository<Product> _productRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private CustomMessages customMessages = new CustomMessages();
-        public BillController(IRepository<Bill> billRepository, IRepository<User> userRepository, IRepository<Staff> staffRepository, IRepository<Product> productRepository)
+        public BillController(IRepository<Bill> billRepository, IRepository<User> userRepository, IRepository<Staff> staffRepository, IRepository<Product> productRepository, IPublishEndpoint publishEndpoint)
         {
             _billRepository = billRepository;
             _userRepository = userRepository;
             _staffRepository = staffRepository;
             _productRepository = productRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet("ListBill")]
@@ -145,6 +149,17 @@ namespace BillApi.Controllers
             {
                 if (item.Quantity == 0)
                     return BadRequest(customMessages.MSG_11);
+                else
+                {
+                    var product = await _productRepository.GetAsync(item.ProductId);
+                    if (product == null)
+                        return NotFound();
+                    product.ProductQuantity -= item.Quantity;
+
+                    await _productRepository.UpdateAsync(product);
+
+                    await _publishEndpoint.Publish(new UpdateQuantity(product.Id, product.ProductQuantity));
+                }
             }
             Bill bill = new Bill
             {

@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AdminContract\AdminContract.csproj" />
     <ProjectReference Include="..\JWTAuthenManager\JWTAuthenManager.csproj" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>

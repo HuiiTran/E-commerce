@@ -63,3 +63,5 @@ D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\JWTAuthenManager.dll
 D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\JWTAuthenManager.pdb
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\AdminContract.dll
+D:\LapTrinhDiDong\Dotnet\E-commerce\Backend\BackendApi\AdminsApi\bin\Debug\net8.0\AdminContract.pdb
